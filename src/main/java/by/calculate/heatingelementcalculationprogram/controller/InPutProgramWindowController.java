@@ -1,13 +1,14 @@
 package by.calculate.heatingelementcalculationprogram.controller;
 
 
-import by.calculate.heatingelementcalculationprogram.inPutProgramWindowApplication;
+import by.calculate.heatingelementcalculationprogram.InPutProgramWindowApplication;
 import by.calculate.heatingelementcalculationprogram.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -54,12 +55,29 @@ public class InPutProgramWindowController {
 
     private void onTableWindowShow(ActionEvent event) throws IOException {
         Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("calculateHeatingElement.fxml"));
+        stage.setScene(new Scene(loader.load()));
+        stage.setTitle("Table");
+        stage.initModality(WINDOW_MODAL);
+        stage.initOwner(((Node)event.getSource()).getScene().getWindow());
+        if (!RegistrationControllerService.fillingWindow(arrayOfRegistrationElements()).equals("Errors in the following fields ")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText(RegistrationControllerService.fillingWindow(arrayOfRegistrationElements()));
+            alert.showAndWait();
+        }else {
+            TableController tableController = loader.getController();
+            Person newPerson = new Person(nameTextField.getText(),surNameTextField.getText(),onClickRadioButton(event),
+                    addressTextField.getText(),positionComboBox.getValue(), birthdayDate.getValue(),
+                    Integer.parseInt(wageTextField.getText().trim()));
+            tableController.onTransferData(newPerson);
+            stage.show();
+/*        Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(inPutProgramWindowApplication.class.getResource("calculateHeatingElement.fxml"));
-        //создаем загрузчик
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("Calculate Heating Element");
         stage.initModality(WINDOW_MODAL);
         stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-        stage.show();
+        stage.show();*/
     }
 }
