@@ -81,6 +81,34 @@ public class InitialData {
         this.voltageTen = voltageTen;
     }
 
+    public InitialData(String numberOrder, String customer, String numberOfProducts, String pilotBatch,
+                       Double spiralReductionFactorTen, Double pipeElongationFactorTen, Double diameterSpiral,
+                       Double temperatureSpiral, String spiralMaterialSpiral, String numberOfWiresInASpiral,
+                       Double mandrelDiameter, String sand, Double pipeBilletDiameter, Double pipeThickness,
+                       Double topStudProtrusion, Double bottomStudProtrusion, Double topStudContactType,
+                       Double bottomStudContactType, String spiralFiring, String gost) {
+        this.numberOrder = numberOrder;
+        this.customer = customer;
+        this.numberOfProducts = numberOfProducts;
+        this.pilotBatch = pilotBatch;
+        this.spiralReductionFactorTen = spiralReductionFactorTen;
+        this.pipeElongationFactorTen = pipeElongationFactorTen;
+        this.diameterSpiral = diameterSpiral;
+        this.temperatureSpiral = temperatureSpiral;
+        this.spiralMaterialSpiral = spiralMaterialSpiral;
+        this.numberOfWiresInASpiral = numberOfWiresInASpiral;
+        this.mandrelDiameter = mandrelDiameter;
+        this.sand = sand;
+        this.pipeBilletDiameter = pipeBilletDiameter;
+        this.pipeThickness = pipeThickness;
+        this.topStudProtrusion = topStudProtrusion;
+        this.bottomStudProtrusion = bottomStudProtrusion;
+        this.topStudContactType = topStudContactType;
+        this.bottomStudContactType = bottomStudContactType;
+        this.spiralFiring = spiralFiring;
+        Gost = gost;
+    }
+
     public Double getLengthTen() {
         return lengthTen;
     }

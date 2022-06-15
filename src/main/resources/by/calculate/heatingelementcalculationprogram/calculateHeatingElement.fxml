@@ -88,17 +88,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label prefHeight="24.0" prefWidth="204.0" text="Номер заказа">
+            <Label fx:id="numberOrderLabel" prefHeight="24.0" prefWidth="204.0" text="Номер заказа">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Заказчик" GridPane.rowIndex="1">
+            <Label fx:id="customerLabel" text="Заказчик" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Количество изделий в заказе " GridPane.rowIndex="2">
+            <Label fx:id="numberOfProductsLabel" text="Количество изделий в заказе " GridPane.rowIndex="2">
                <font>
                   <Font size="16.0" />
                </font>
@@ -106,7 +106,7 @@
             <TextField fx:id="numberOrderCalculateTen" GridPane.columnIndex="1" />
             <TextField fx:id="customerCalculateTen" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="numberOfProductsCalculateTen" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Признак опытной партии" GridPane.rowIndex="3">
+            <Label fx:id="pilotBatchLabel" text="Признак опытной партии" GridPane.rowIndex="3">
                <font>
                   <Font size="16.0" />
                </font>
@@ -136,22 +136,22 @@
             <RowConstraints maxHeight="45.0" minHeight="0.0" prefHeight="33.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label prefHeight="25.0" prefWidth="300.0" text="Коэф. приведения спирали">
+            <Label fx:id="spiralReductionFactorLabel" prefHeight="25.0" prefWidth="300.0" text="Коэф. приведения спирали">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="25.0" prefWidth="307.0" text="Коэф. удлинения трубы" GridPane.rowIndex="1">
+            <Label fx:id="pipeElongationFactorLabel" prefHeight="25.0" prefWidth="307.0" text="Коэф. удлинения трубы" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="25.0" prefWidth="298.0" text="Димаметр проволоки" GridPane.rowIndex="2">
+            <Label fx:id="diameterSpiralLabel" prefHeight="25.0" prefWidth="298.0" text="Димаметр проволоки" GridPane.rowIndex="2">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="25.0" prefWidth="300.0" text="Температура на спирале" GridPane.rowIndex="3">
+            <Label fx:id="temperatureSpiralLabel" prefHeight="25.0" prefWidth="300.0" text="Температура на спирале" GridPane.rowIndex="3">
                <font>
                   <Font size="16.0" />
                </font>
@@ -187,62 +187,62 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label prefHeight="24.0" prefWidth="198.0" text="Материал проволоки">
+            <Label fx:id="spiralMaterialLabel" prefHeight="24.0" prefWidth="198.0" text="Материал проволоки">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Диаметр заготовки трубы" GridPane.rowIndex="4">
+            <Label fx:id="pipeBilletDiameterLabel" text="Диаметр заготовки трубы" GridPane.rowIndex="4">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Насыпной материал" GridPane.rowIndex="3">
+            <Label fx:id="sandLabel" text="Насыпной материал" GridPane.rowIndex="3">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Диаметр оправки" GridPane.rowIndex="2">
+            <Label fx:id="mandrelDiameterLabel" text="Диаметр оправки" GridPane.rowIndex="2">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Вылет нижней шпильке" GridPane.rowIndex="7">
+            <Label fx:id="bottomStudProtrusionLabel" text="Вылет нижней шпильке" GridPane.rowIndex="7">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Признак кол. проволки в спирале" GridPane.rowIndex="1">
+            <Label fx:id="numberOfWiresInASpiralLabel" text="Признак кол. проволки в спирале" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Толщена трубы" GridPane.rowIndex="5">
+            <Label fx:id="pipeThicknessLabel" text="Толщена трубы" GridPane.rowIndex="5">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Обжиг спиралей" GridPane.rowIndex="10">
+            <Label fx:id="spiralFiringLabel" text="Обжиг спиралей" GridPane.rowIndex="10">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Вылет верхней шпильке" GridPane.rowIndex="6">
+            <Label fx:id="topStudProtrusionLabel" text="Вылет верхней шпильке" GridPane.rowIndex="6">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Тип контакта верхней шпильки" GridPane.rowIndex="8">
+            <Label fx:id="topStudContactTypeLabel" text="Тип контакта верхней шпильки" GridPane.rowIndex="8">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="Тип контакта нижней шпильки" GridPane.rowIndex="9">
+            <Label fx:id="bottomStudContactTypeLabel" text="Тип контакта нижней шпильки" GridPane.rowIndex="9">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="ГОСТ" GridPane.rowIndex="11">
+            <Label fx:id="gostLabel" text="ГОСТ" GridPane.rowIndex="11">
                <font>
                   <Font size="16.0" />
                </font>
@@ -258,20 +258,20 @@
             <ChoiceBox fx:id="topStudContactTypeCalculateTen" prefHeight="25.0" prefWidth="184.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <ChoiceBox fx:id="bottomStudContactTypeCalculateTen" prefHeight="25.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <ChoiceBox fx:id="spiralFiringCalculateTen" prefHeight="25.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <ChoiceBox fx:id="GostCalculateTen" prefHeight="25.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <ChoiceBox fx:id="gostCalculateTen" prefHeight="25.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
          </children>
       </GridPane>
-      <Button fx:id="generateCalculationCalculateTen" layoutX="148.0" layoutY="630.0" mnemonicParsing="false" text="Сформировать расчет">
+      <Button fx:id="generateCalculationCalculateTen" layoutX="148.0" layoutY="630.0" mnemonicParsing="false" onAction="#onFormedCalculateHeatingElementControllerShow" text="Сформировать расчет">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="searchDateBaseCalculateTen" onAction="#onDataBaseControllerShow" layoutX="577.0" layoutY="630.0" mnemonicParsing="false" text="Поиск по Базе">
+      <Button fx:id="searchDateBaseCalculateTen" layoutX="577.0" layoutY="630.0" mnemonicParsing="false" onAction="#onDataBaseControllerShow" text="Поиск по Базе">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="changeUserCalculateTen" onAction="#onInPutProgramWindowShow" layoutX="700.0" layoutY="18.0" mnemonicParsing="false" text="Сменить пользователя">
+      <Button fx:id="changeUserCalculateTen" layoutX="700.0" layoutY="18.0" mnemonicParsing="false" onAction="#onInPutProgramWindowShow" text="Сменить пользователя">
          <font>
             <Font size="16.0" />
          </font>
