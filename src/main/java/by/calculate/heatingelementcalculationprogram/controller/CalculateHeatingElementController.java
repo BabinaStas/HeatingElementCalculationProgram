@@ -129,7 +129,7 @@ public class CalculateHeatingElementController {
     }
 
     @FXML
-    protected void onDataBaseController(ActionEvent event) throws IOException {
+    protected void onDataBaseControllerShow(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("dataBase.fxml"));
         stage.setScene(new Scene(loader.load()));

@@ -266,7 +266,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="searchDateBaseCalculateTen" onAction="#onDataBaseController" layoutX="577.0" layoutY="630.0" mnemonicParsing="false" text="Поиск по Базе">
+      <Button fx:id="searchDateBaseCalculateTen" onAction="#onDataBaseControllerShow" layoutX="577.0" layoutY="630.0" mnemonicParsing="false" text="Поиск по Базе">
          <font>
             <Font size="16.0" />
          </font>
