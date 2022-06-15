@@ -1,6 +1,5 @@
 package by.calculate.heatingelementcalculationprogram.controller;
 
-
 import by.calculate.heatingelementcalculationprogram.InPutProgramWindowApplication;
 import by.calculate.heatingelementcalculationprogram.model.User;
 import javafx.event.ActionEvent;
@@ -18,7 +17,6 @@ import java.io.IOException;
 
 import static javafx.stage.Modality.WINDOW_MODAL;
 
-
 public class InPutProgramWindowController {
 
     @FXML
@@ -31,7 +29,6 @@ public class InPutProgramWindowController {
     private PasswordField passwordTextFieldProgramWindow;
 
     private User[] users;
-
 
     @FXML
     private void initialize() {
@@ -50,6 +47,12 @@ public class InPutProgramWindowController {
                 isFind = true;
                 onTableWindowShow(event);
                 break;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("Login or password entered incorrectly");
+                alert.showAndWait();
+                break;
             }
     }
 
@@ -57,27 +60,9 @@ public class InPutProgramWindowController {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("calculateHeatingElement.fxml"));
         stage.setScene(new Scene(loader.load()));
-        stage.setTitle("Table");
-        stage.initModality(WINDOW_MODAL);
-        stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-        if (!RegistrationControllerService.fillingWindow(arrayOfRegistrationElements()).equals("Errors in the following fields ")) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(RegistrationControllerService.fillingWindow(arrayOfRegistrationElements()));
-            alert.showAndWait();
-        }else {
-            TableController tableController = loader.getController();
-            Person newPerson = new Person(nameTextField.getText(),surNameTextField.getText(),onClickRadioButton(event),
-                    addressTextField.getText(),positionComboBox.getValue(), birthdayDate.getValue(),
-                    Integer.parseInt(wageTextField.getText().trim()));
-            tableController.onTransferData(newPerson);
-            stage.show();
-/*        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(inPutProgramWindowApplication.class.getResource("calculateHeatingElement.fxml"));
-        stage.setScene(new Scene(loader.load()));
         stage.setTitle("Calculate Heating Element");
         stage.initModality(WINDOW_MODAL);
         stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-        stage.show();*/
+        stage.show();
     }
 }

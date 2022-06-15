@@ -254,9 +254,9 @@
             <ChoiceBox fx:id="pipeBilletDiameterCalculateTen" prefHeight="25.0" prefWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ChoiceBox fx:id="pipeThicknessCalculateTen" prefHeight="25.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <ChoiceBox fx:id="topStudProtrusionCalculateTen" prefHeight="25.0" prefWidth="177.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ChoiceBox fx:id="bottonStudProtrusionCalculateTen" prefHeight="25.0" prefWidth="204.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ChoiceBox fx:id="bottomStudProtrusionCalculateTen" prefHeight="25.0" prefWidth="204.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <ChoiceBox fx:id="topStudContactTypeCalculateTen" prefHeight="25.0" prefWidth="184.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <ChoiceBox fx:id="bottonStudContactTypeCalculateTen" prefHeight="25.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <ChoiceBox fx:id="bottomStudContactTypeCalculateTen" prefHeight="25.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <ChoiceBox fx:id="spiralFiringCalculateTen" prefHeight="25.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <ChoiceBox fx:id="GostCalculateTen" prefHeight="25.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
          </children>
@@ -266,12 +266,12 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="searchDatebaseCalculateTen" layoutX="577.0" layoutY="630.0" mnemonicParsing="false" text="Поиск по Базе">
+      <Button fx:id="searchDateBaseCalculateTen" onAction="#onDataBaseController" layoutX="577.0" layoutY="630.0" mnemonicParsing="false" text="Поиск по Базе">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="changeUserCalculateTen" layoutX="700.0" layoutY="18.0" mnemonicParsing="false" text="Сменить пользователя">
+      <Button fx:id="changeUserCalculateTen" onAction="#onInPutProgramWindowShow" layoutX="700.0" layoutY="18.0" mnemonicParsing="false" text="Сменить пользователя">
          <font>
             <Font size="16.0" />
          </font>
