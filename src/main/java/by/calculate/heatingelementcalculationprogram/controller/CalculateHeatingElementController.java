@@ -1,6 +1,7 @@
 package by.calculate.heatingelementcalculationprogram.controller;
 
 import by.calculate.heatingelementcalculationprogram.InPutProgramWindowApplication;
+import by.calculate.heatingelementcalculationprogram.model.InitialData;
 import by.calculate.heatingelementcalculationprogram.service.CalculateHeatingElementService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -265,19 +267,14 @@ public class CalculateHeatingElementController {
         gostCalculateTen.setItems(listGostCalculateTen);
     }
 
-    @FXML
-    private void onInPutProgramWindowShow(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.
-                getResource("inPutProgramWindow.fxml"));
-        stage.setScene(new Scene(loader.load()));
-        stage.setTitle("Enter to program");
-        stage.initModality(WINDOW_MODAL);
-        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-        stage.show();
-    }
+/*    public InitialData getInitialData() {
+        InitialData dateOfCalculate = new InitialData(Double.parseDouble(lengthTenCalculateTen.getText()),
+                Double.parseDouble(studLengthCalculateTen.getText()), Double.parseDouble(diameterSpiralCalculateTen.getText()),
+                Double.parseDouble(powerTenCalculateTen.getText()), workspaceCalculateTen.getText(), Double.parseDouble(voltageCalculateTen.getText()));
+    return dateOfCalculate;
+    }*/
 
-    private String[] arrayOfDesignationOfThermalElectricHeater() {
+        private String[] arrayOfDesignationOfThermalElectricHeater() {
         String[] array = new String[6];
         array[0] = lengthTenCalculateTen.getText();
         array[1] = studLengthCalculateTen.getText();
@@ -347,6 +344,18 @@ public class CalculateHeatingElementController {
     }
 
     @FXML
+    private void onInPutProgramWindowShow(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.
+                getResource("inPutProgramWindow.fxml"));
+        stage.setScene(new Scene(loader.load()));
+        stage.setTitle("Enter to program");
+        stage.initModality(WINDOW_MODAL);
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
+    @FXML
     protected void onDataBaseControllerShow(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("dataBase.fxml"));
@@ -373,17 +382,22 @@ public class CalculateHeatingElementController {
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("Formed Calculate Heating Element");
         stage.initModality(WINDOW_MODAL);
-        stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-        if (!CalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()).
-                equals("Errors in the following fields ") &&
-                (!CalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()).
-                        equals("Errors in the following fields "))) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(CalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()));
-            alert.showAndWait();
-        }else {
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        if (CalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()).equals("Заполните следующие поля") &&
+            CalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()).equals("Заполните следующие поля")) {
+            FormedCalculateHeatingElementController formedCalculateHeatingElementController = loader.getController();
+            InitialData dateOfCalculate = new InitialData(Double.parseDouble(lengthTenCalculateTen.getText()),
+            Double.parseDouble(studLengthCalculateTen.getText()), Double.parseDouble(diameterSpiralCalculateTen.getText()),
+            Double.parseDouble(powerTenCalculateTen.getText()), workspaceCalculateTen.getText(), Double.parseDouble(voltageCalculateTen.getText()));
+        formedCalculateHeatingElementController.onTransferData(dateOfCalculate);
             stage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ошибка");
+            alert.setHeaderText(CalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()) +
+                    CalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()));
+            alert.showAndWait();
+
         }
     }
 }
