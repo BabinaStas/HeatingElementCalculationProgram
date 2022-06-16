@@ -2,7 +2,7 @@ package by.calculate.heatingelementcalculationprogram.service;
 
 public class CalculateHeatingElementService {
 
-    public static String fillingWindow(String[] array) {
+    public static String fillingWindow (String[] array) {
         String result  = "Errors in the following fields ";
         for (int i = 0; i < array.length; i++){
             if (array[i] == "") {
@@ -11,7 +11,7 @@ public class CalculateHeatingElementService {
         } return result;
     }
 
-    public static String fillingInitialDataWindow(String[][] array) {
+    public static String fillingInitialDataWindow (String[][] array) {
         String result  = "Errors in the following fields ";
         for (int i = 0; i < array.length; i++){
             if (array[i][1] == "") {
@@ -19,10 +19,4 @@ public class CalculateHeatingElementService {
             }
         } return result;
     }
-    /*Длинна активной части*/
-    public static Double longActivePart(Double lengthTen, Double studLength){
-        return lengthTen - studLength;
-    }
-
-
 }
