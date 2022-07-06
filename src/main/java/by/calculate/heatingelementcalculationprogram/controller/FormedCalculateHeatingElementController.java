@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 
 import static javafx.stage.Modality.WINDOW_MODAL;
 
@@ -27,7 +27,7 @@ public class FormedCalculateHeatingElementController {
     private Label bottomStudProtrusionFormedCalculateTen;
 
     @FXML
-    private Label coilResistanceFormedCalculateTen;
+    private Label lengthOfTheActivePartFormedCalculateTen;
 
     @FXML
     private Label customerFormedCalculateTen;
@@ -108,7 +108,7 @@ public class FormedCalculateHeatingElementController {
     private Label studLengthFormedCalculateTen;
 
     @FXML
-    private Label stuffingClearanceFormedCalculateTen;
+    private Label specificLoadOnTheWireFormedCalculateTen;
 
     @FXML
     private Label topStudContactTypeFormedCalculateTen;
@@ -127,6 +127,8 @@ public class FormedCalculateHeatingElementController {
 
     @FXML
     private Label permissibleResistanceRangeForTheHeatingElementFormedCalculateTen;
+
+    InitialData transferInitialData;
 
     @FXML
     private void onCalculateHeatingElementControllerShow(ActionEvent event) throws IOException {
@@ -158,7 +160,30 @@ public class FormedCalculateHeatingElementController {
         powerTenFormedCalculateTen.setText(initialData.getPowerTen().toString());
         workspaceFormedCalculateTen.setText(initialData.getWorkspaceTen());
         voltageFormedCalculateTen.setText(initialData.getVoltageTen().toString());
+        transferInitialData = initialData;
     }
 
+    @FXML
+    private void onSaveFormedCalculationTen(ActionEvent event) throws IOException {
+        saveInitialData(transferInitialData);
+    }
+
+    protected void saveInitialData(InitialData initialData) {
+
+        File fileInitialData = new File("resource\\initialData.dat");
+
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(fileInitialData));
+             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileInitialData))) {
+             objectOutputStream.writeObject(initialData);
+             InitialData initialData1 = (InitialData) objectInputStream.readObject();
+             System.out.println(initialData1);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

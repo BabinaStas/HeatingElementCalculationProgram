@@ -7,22 +7,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.calculate.heatingelementcalculationprogram.controller.DataBaseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1004.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.calculate.heatingelementcalculationprogram.controller.DataBaseController">
    <children>
-      <AnchorPane layoutY="53.0" prefHeight="647.0" prefWidth="900.0" style="-fx-background-color: fafafa;">
+      <AnchorPane layoutY="53.0" prefHeight="648.0" prefWidth="1002.0" style="-fx-background-color: fafafa;">
          <children>
-            <TableView fx:id="dataBaseTableDatabase" prefHeight="572.0" prefWidth="900.0">
+            <TableView fx:id="dataBaseTableDatabase" prefHeight="553.0" prefWidth="1000.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="C1" />
-                  <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="lengthTen" prefWidth="120.0" text="Длинна" />
+                  <TableColumn fx:id="studLengthTen" minWidth="0.0" text="Заделка" />
+                  <TableColumn fx:id="diameterTen" prefWidth="100.0" text="Диаметр" />
+                  <TableColumn fx:id="powerTen" prefWidth="100.0" text="Мощность" />
+                  <TableColumn fx:id="workspaceTen" prefWidth="100.0" text="Рабочая среда" />
+                  <TableColumn fx:id="voltageTen" prefWidth="150.0" text="Напряжение" />
                </columns>
             </TableView>
-            <Button fx:id="generateCalculationDatabase" onAction="#onFormedCalculateHeatingElementControllerShow" layoutX="57.0" layoutY="587.0" mnemonicParsing="false" text="Сформировать расчет">
+            <Button fx:id="generateCalculationDatabase" layoutX="44.0" layoutY="582.0" mnemonicParsing="false" onAction="#onFormedCalculateHeatingElementControllerShow" text="Сформировать расчет">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="backToCalculateDataBase" onAction="#onCalculateHeatingElementControllerShow" layoutX="702.0" layoutY="587.0" mnemonicParsing="false" text="Вернуться в начало">
+            <Button fx:id="backToCalculateDataBase" layoutX="794.0" layoutY="582.0" mnemonicParsing="false" onAction="#onCalculateHeatingElementControllerShow" text="Вернуться в начало">
                <font>
                   <Font size="16.0" />
                </font>

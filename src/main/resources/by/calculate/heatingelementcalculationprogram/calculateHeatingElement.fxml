@@ -38,32 +38,32 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="studLengthCalculateTen" promptText="Заделка" GridPane.columnIndex="2">
+            <TextField fx:id="studLengthCalculateTen" promptText="Заделка" text="40.0" GridPane.columnIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="lengthTenCalculateTen" prefHeight="39.0" prefWidth="98.0" promptText="Длинна" GridPane.columnIndex="1">
+            <TextField fx:id="lengthTenCalculateTen" prefHeight="39.0" prefWidth="98.0" promptText="Длинна" text="100.0" GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="diameterTenCalculateTen" promptText="Диаметр" GridPane.columnIndex="3">
+            <TextField fx:id="diameterTenCalculateTen" promptText="Диаметр" text="8.5" GridPane.columnIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="workspaceCalculateTen" promptText="Рабочая среда" GridPane.columnIndex="6">
+            <TextField fx:id="workspaceCalculateTen" promptText="Рабочая среда" text="Воздух" GridPane.columnIndex="6">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="voltageCalculateTen" prefHeight="25.0" prefWidth="60.0" promptText="Напряжение" GridPane.columnIndex="7">
+            <TextField fx:id="voltageCalculateTen" prefHeight="25.0" prefWidth="60.0" promptText="Напряжение" text="220" GridPane.columnIndex="7">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="powerTenCalculateTen" promptText="Мощность" GridPane.columnIndex="5">
+            <TextField fx:id="powerTenCalculateTen" promptText="Мощность" text="2.0" GridPane.columnIndex="5">
                <font>
                   <Font size="18.0" />
                </font>
@@ -103,9 +103,9 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="numberOrderCalculateTen" GridPane.columnIndex="1" />
-            <TextField fx:id="customerCalculateTen" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="numberOfProductsCalculateTen" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="numberOrderCalculateTen" text="1234" GridPane.columnIndex="1" />
+            <TextField fx:id="customerCalculateTen" text="ОАО &quot;Планар&quot;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="numberOfProductsCalculateTen" text="1024" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="pilotBatchLabel" text="Признак опытной партии" GridPane.rowIndex="3">
                <font>
                   <Font size="16.0" />
@@ -156,10 +156,10 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="spiralReductionFactorCalculateTen" GridPane.columnIndex="1" />
-            <TextField fx:id="pipeElongationFactorCalculateTen" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="diameterSpiralCalculateTen" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="temperatureSpiralCalculateTen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="spiralReductionFactorCalculateTen" text="1.300" GridPane.columnIndex="1" />
+            <TextField fx:id="pipeElongationFactorCalculateTen" text="1.165" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="diameterSpiralCalculateTen" text="0.4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="temperatureSpiralCalculateTen" text="750" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Label layoutX="469.0" layoutY="159.0" text="Блок выбора материалов ТЭНа">

@@ -267,13 +267,6 @@ public class CalculateHeatingElementController {
         gostCalculateTen.setItems(listGostCalculateTen);
     }
 
-/*    public InitialData getInitialData() {
-        InitialData dateOfCalculate = new InitialData(Double.parseDouble(lengthTenCalculateTen.getText()),
-                Double.parseDouble(studLengthCalculateTen.getText()), Double.parseDouble(diameterSpiralCalculateTen.getText()),
-                Double.parseDouble(powerTenCalculateTen.getText()), workspaceCalculateTen.getText(), Double.parseDouble(voltageCalculateTen.getText()));
-    return dateOfCalculate;
-    }*/
-
         private String[] arrayOfDesignationOfThermalElectricHeater() {
         String[] array = new String[6];
         array[0] = lengthTenCalculateTen.getText();
@@ -363,14 +356,20 @@ public class CalculateHeatingElementController {
         stage.setTitle("Data base table");
         stage.initModality(WINDOW_MODAL);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-        if (!CalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()).
-                equals("Errors in the following fields ")) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("One of the fields for the designation of a thermal electric heater is not filled");
-            alert.showAndWait();
-        } else {
+        if (CalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()).equals("Заполните следующие поля")) {
+            DataBaseController dataBaseController = loader.getController();
+            InitialData dateOfCalculate = new InitialData(Double.parseDouble(lengthTenCalculateTen.getText()),
+                    Double.parseDouble(studLengthCalculateTen.getText()), Double.parseDouble(diameterTenCalculateTen.getText()),
+                    Double.parseDouble(powerTenCalculateTen.getText()), workspaceCalculateTen.getText(),
+                    Double.parseDouble(voltageCalculateTen.getText()));
+            dataBaseController.onTransferData(dateOfCalculate);
             stage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ошибка");
+            alert.setHeaderText(CalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()) +
+                    CalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()));
+            alert.showAndWait();
         }
     }
 
@@ -387,9 +386,9 @@ public class CalculateHeatingElementController {
             CalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()).equals("Заполните следующие поля")) {
             FormedCalculateHeatingElementController formedCalculateHeatingElementController = loader.getController();
             InitialData dateOfCalculate = new InitialData(Double.parseDouble(lengthTenCalculateTen.getText()),
-            Double.parseDouble(studLengthCalculateTen.getText()), Double.parseDouble(diameterSpiralCalculateTen.getText()),
+            Double.parseDouble(studLengthCalculateTen.getText()), Double.parseDouble(diameterTenCalculateTen.getText()),
             Double.parseDouble(powerTenCalculateTen.getText()), workspaceCalculateTen.getText(), Double.parseDouble(voltageCalculateTen.getText()));
-        formedCalculateHeatingElementController.onTransferData(dateOfCalculate);
+            formedCalculateHeatingElementController.onTransferData(dateOfCalculate);
             stage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

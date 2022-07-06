@@ -1,6 +1,8 @@
 package by.calculate.heatingelementcalculationprogram.model;
 
-public class InitialData {
+import java.io.Serializable;
+
+public class InitialData implements Serializable {
 
     //Блок обозанчения ТЭНа
     private Double lengthTen;
@@ -315,5 +317,17 @@ public class InitialData {
 
     public void setGost(String gost) {
         Gost = gost;
+    }
+
+    @Override
+    public String toString() {
+        return "InitialData{" +
+                "lengthTen=" + lengthTen +
+                ", studLengthTen=" + studLengthTen +
+                ", diameterTen=" + diameterTen +
+                ", powerTen=" + powerTen +
+                ", workspaceTen='" + workspaceTen + '\'' +
+                ", voltageTen=" + voltageTen +
+                '}';
     }
 }

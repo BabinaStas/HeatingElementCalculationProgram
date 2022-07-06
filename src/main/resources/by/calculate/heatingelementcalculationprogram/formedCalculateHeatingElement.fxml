@@ -27,7 +27,7 @@
                   <Font name="icomoon" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="saveFormedCalculationTen" layoutX="182.0" layoutY="572.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="166.0" text="Сохранить " textAlignment="CENTER">
+            <Button fx:id="saveFormedCalculationTen" layoutX="182.0" layoutY="572.0" mnemonicParsing="false" onAction="#onSaveFormedCalculationTen" prefHeight="41.0" prefWidth="166.0" text="Сохранить " textAlignment="CENTER">
                <font>
                   <Font name="icomoon" size="24.0" />
                </font>
@@ -277,22 +277,22 @@
                         <Font name="icomoon" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Зазор при набивке, мм" GridPane.rowIndex="9">
+                  <Label text="Длинна активной части см" GridPane.rowIndex="9">
                      <font>
                         <Font name="icomoon" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="stuffingClearanceFormedCalculateTen" text="0,5" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                  <Label fx:id="lengthOfTheActivePartFormedCalculateTen" text="760" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <font>
                         <Font name="icomoon" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Сопротивление спирали, Ом" GridPane.rowIndex="10">
+                  <Label text="Удельная нагрузка на проволку Вт/см2" GridPane.rowIndex="10">
                      <font>
                         <Font name="icomoon" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="coilResistanceFormedCalculateTen" text="54,4" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                  <Label fx:id="specificLoadOnTheWireFormedCalculateTen" text="54,4" GridPane.columnIndex="1" GridPane.rowIndex="10">
                      <font>
                         <Font name="icomoon" size="18.0" />
                      </font>
