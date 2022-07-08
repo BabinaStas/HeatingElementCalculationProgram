@@ -1,7 +1,8 @@
 package by.calculate.heatingelementcalculationprogram.controller;
 
 import by.calculate.heatingelementcalculationprogram.InPutProgramWindowApplication;
-import by.calculate.heatingelementcalculationprogram.model.InitialData;
+import by.calculate.heatingelementcalculationprogram.domain.InitialData;
+import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Designation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -128,7 +129,7 @@ public class FormedCalculateHeatingElementController {
     @FXML
     private Label permissibleResistanceRangeForTheHeatingElementFormedCalculateTen;
 
-    InitialData transferInitialData;
+    Designation transferDesignation;
 
     @FXML
     private void onCalculateHeatingElementControllerShow(ActionEvent event) throws IOException {
@@ -153,30 +154,30 @@ public class FormedCalculateHeatingElementController {
     }
 
     @FXML
-    protected void onTransferData(InitialData initialData) {
-        lengthTenFormedCalculateTen.setText(initialData.getLengthTen().toString());
-        studLengthFormedCalculateTen.setText(initialData.getStudLengthTen().toString());
-        diameterTenFormedCalculateTen.setText(initialData.getDiameterTen().toString());
-        powerTenFormedCalculateTen.setText(initialData.getPowerTen().toString());
-        workspaceFormedCalculateTen.setText(initialData.getWorkspaceTen());
-        voltageFormedCalculateTen.setText(initialData.getVoltageTen().toString());
-        transferInitialData = initialData;
+    protected void onTransferData(Designation designation) {
+        lengthTenFormedCalculateTen.setText(designation.getLengthTen().toString());
+        studLengthFormedCalculateTen.setText(designation.getStudLengthTen().toString());
+        diameterTenFormedCalculateTen.setText(designation.getDiameterTen().toString());
+        powerTenFormedCalculateTen.setText(designation.getPowerTen().toString());
+        workspaceFormedCalculateTen.setText(designation.getWorkspaceTen());
+        voltageFormedCalculateTen.setText(designation.getVoltageTen().toString());
+        transferDesignation = designation;
     }
 
     @FXML
     private void onSaveFormedCalculationTen(ActionEvent event) throws IOException {
-        saveInitialData(transferInitialData);
+        saveDesignation(transferDesignation);
     }
 
-    protected void saveInitialData(InitialData initialData) {
+    protected void saveDesignation(Designation designation) {
 
         File fileInitialData = new File("resource\\initialData.dat");
 
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(fileInitialData));
              ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileInitialData))) {
-             objectOutputStream.writeObject(initialData);
-             InitialData initialData1 = (InitialData) objectInputStream.readObject();
-             System.out.println(initialData1);
+             objectOutputStream.writeObject(designation);
+             Designation designation1 = (Designation) objectInputStream.readObject();
+             System.out.println(designation1);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -1,46 +1,29 @@
 package by.calculate.heatingelementcalculationprogram.service;
 
-import by.calculate.heatingelementcalculationprogram.model.InitialData;
+import by.calculate.heatingelementcalculationprogram.domain.InitialData;
 
-public class CalculateHeatingElementService {
-
-    public static String fillingWindow(String[] array) {
-        String result  = "Заполните следующие поля";
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == "") {
-                result += array[i] + ", ";
-            }
-        } return result;
-    }
-
-    public static String fillingInitialDataWindow(String[][] array) {
-        String result  = "Заполните следующие поля";
-        for (int i = 0; i < array.length; i++){
-            if (array[i][1] == "") {
-                result += array[i][0] + ", ";
-            }
-        } return result;
-    }
+public class MethodsElectroPhysicalCalculation {
 
     /*Длинна активной части*/
     public static Double getLongActivePart(InitialData LengthActivePart){
-        return LengthActivePart.getLengthTen() - (LengthActivePart.getStudLengthTen() * 2);
+        return LengthActivePart.getDesignation().getLengthTen() - (LengthActivePart.getDesignation().getStudLengthTen() * 2);
     }
 
     /*Удельная нагрузка на проволку*/
     public static Double getSpecificLoadOnTheWire(InitialData LoadWire){
-        return LoadWire.getPowerTen() / getLongActivePart(LoadWire);
+        return LoadWire.getDesignation().getPowerTen() / getLongActivePart(LoadWire);
     }
 
     /*Длинна шпильки*/
     public static Integer getLengthContanct(InitialData lengthContanct){
-       return Integer.parseInt(lengthContanct.getStudLengthTen().toString()) + 25;
+        return Integer.parseInt(lengthContanct.getDesignation().getStudLengthTen().toString()) + 25;
 
     }
 
     /*Сопротивление нагревательного элемента*/
     public static Double getHeatingElementResistance(InitialData heatingElementResistance) {
-        return (Math.pow(heatingElementResistance.getVoltageTen(), 2)) / (heatingElementResistance.getPowerTen() * 1000);
+        return (Math.pow(heatingElementResistance.getDesignation().getVoltageTen(), 2)) /
+                (heatingElementResistance.getDesignation().getPowerTen() * 1000);
     }
 
     /*Диапазон нагрвательного элемента*/
@@ -51,16 +34,16 @@ public class CalculateHeatingElementService {
 
     /*Длинна сжатой спирали*/
     public static Double  getLengthOfTheCompressedSpiral(InitialData LengthOfTheCompressedSpiral) {
-        return LengthOfTheCompressedSpiral.getPowerTen() * 0.268;
+        return LengthOfTheCompressedSpiral.getDesignation().getPowerTen() * 0.268;
     }
 
     /*Общая длинна проволоки*/
     public static Double  getTotalWireLengthFormedCalculateTen(InitialData totalWireLength) {
-        return getLengthOfTheCompressedSpiral(totalWireLength) * totalWireLength.getDiameterSpiral();
+        return getLengthOfTheCompressedSpiral(totalWireLength) * totalWireLength.getCoefficient().getDiameterSpiral();
     }
 
     /*Длинна заготовки трубы*/
     public static Double  getPipeBlankLengthFormedCalculateTen(InitialData pipeBlankLength) {
-        return pipeBlankLength.getLengthTen() / pipeBlankLength.getPipeElongationFactorTen();
+        return pipeBlankLength.getDesignation().getLengthTen() / pipeBlankLength.getCoefficient().getPipeElongationFactorTen();
     }
 }

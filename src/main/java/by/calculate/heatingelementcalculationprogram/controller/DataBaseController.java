@@ -1,7 +1,9 @@
 package by.calculate.heatingelementcalculationprogram.controller;
 
 import by.calculate.heatingelementcalculationprogram.InPutProgramWindowApplication;
-import by.calculate.heatingelementcalculationprogram.model.InitialData;
+import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Designation;
+import by.calculate.heatingelementcalculationprogram.domain.InitialData;
+import by.calculate.heatingelementcalculationprogram.service.DesignationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,41 +28,43 @@ public class DataBaseController {
     private Button backToCalculateDataBase;
 
     @FXML
-    private TableView<InitialData> dataBaseTableDatabase;
+    private TableView<Designation> dataBaseTableDatabase;
 
     @FXML
-    private TableColumn<InitialData, Double> lengthTen;
+    private TableColumn<Designation, Double> lengthTen;
 
     @FXML
-    private TableColumn<InitialData, Double> studLengthTen;
+    private TableColumn<Designation, Double> studLengthTen;
 
     @FXML
-    private TableColumn<InitialData, Double> diameterTen;
+    private TableColumn<Designation, Double> diameterTen;
 
     @FXML
-    private TableColumn<InitialData, Double> powerTen;
+    private TableColumn<Designation, Double> powerTen;
 
     @FXML
-    private TableColumn<InitialData, String> workspaceTen;
+    private TableColumn<Designation, String> workspaceTen;
 
     @FXML
-    private TableColumn<InitialData, Double> voltageTen;
+    private TableColumn<Designation, Double> voltageTen;
 
     @FXML
     private Button generateCalculationDatabase;
 
+    DesignationService designationService = new DesignationService();
+
     @FXML
     private void initialize() {
 
-        lengthTen.setCellValueFactory(new PropertyValueFactory<InitialData, Double>("lengthTen"));
-        studLengthTen.setCellValueFactory(new PropertyValueFactory<InitialData, Double>("studLengthTen"));
-        diameterTen.setCellValueFactory(new PropertyValueFactory<InitialData, Double>("diameterTen"));
-        powerTen.setCellValueFactory(new PropertyValueFactory<InitialData, Double>("powerTen"));
-        workspaceTen.setCellValueFactory(new PropertyValueFactory<InitialData, String>("workspaceTen"));
-        voltageTen.setCellValueFactory(new PropertyValueFactory<InitialData, Double>("voltageTen"));
+        lengthTen.setCellValueFactory(new PropertyValueFactory<Designation, Double>("lengthTen"));
+        studLengthTen.setCellValueFactory(new PropertyValueFactory<Designation, Double>("studLengthTen"));
+        diameterTen.setCellValueFactory(new PropertyValueFactory<Designation, Double>("diameterTen"));
+        powerTen.setCellValueFactory(new PropertyValueFactory<Designation, Double>("powerTen"));
+        workspaceTen.setCellValueFactory(new PropertyValueFactory<Designation, String>("workspaceTen"));
+        voltageTen.setCellValueFactory(new PropertyValueFactory<Designation, Double>("voltageTen"));
 
         workspaceTen.setCellFactory(t -> {
-            TableCell<InitialData, String> cell = new TableCell<>();
+            TableCell<Designation, String> cell = new TableCell<>();
             Text text = new Text();
             cell.setGraphic(text);
             cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
@@ -69,14 +73,18 @@ public class DataBaseController {
             return cell;
         });
 
-        dataBaseTableDatabase.setItems(initialData);
+        ObservableList<Designation> designations = FXCollections.observableArrayList();
+
+        designations.addAll(designationService.getDesignations());
+        dataBaseTableDatabase.setItems(designations);
+
     }
 
-    @FXML
+/*    @FXML
     protected void onWriteTable() {
         dataBaseTableDatabase.setItems(null);
         dataBaseTableDatabase.setItems(initialData);
-    }
+    }*/
 
     @FXML
     private void onCalculateHeatingElementControllerShow(ActionEvent event) throws IOException {
@@ -100,10 +108,10 @@ public class DataBaseController {
         stage.show();
     }
 
-    @FXML
+/*    @FXML
     protected void onTransferData(InitialData initialData) {
         dataBaseTableDatabase.getItems().add(initialData);
         ObservableList<InitialData> items = dataBaseTableDatabase.getItems();
         items.add(initialData);
-    }
+    }*/
 }

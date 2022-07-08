@@ -1,4 +1,4 @@
-package by.calculate.heatingelementcalculationprogram.model.initialDataChild;
+package by.calculate.heatingelementcalculationprogram.domain.initialdatachild;
 
 public class Designation {
 
@@ -18,6 +18,10 @@ public class Designation {
         this.workspaceTen = workspaceTen;
         this.voltageTen = voltageTen;
     }
+
+    public Designation() {
+    }
+
 
     public Double getLengthTen() {
         return lengthTen;

@@ -1,7 +1,7 @@
 package by.calculate.heatingelementcalculationprogram.controller;
 
 import by.calculate.heatingelementcalculationprogram.InPutProgramWindowApplication;
-import by.calculate.heatingelementcalculationprogram.model.User;
+import by.calculate.heatingelementcalculationprogram.domain.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

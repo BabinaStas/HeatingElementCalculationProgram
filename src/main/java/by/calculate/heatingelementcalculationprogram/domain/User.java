@@ -1,4 +1,4 @@
-package by.calculate.heatingelementcalculationprogram.model;
+package by.calculate.heatingelementcalculationprogram.domain;
 
 import java.util.Objects;
 

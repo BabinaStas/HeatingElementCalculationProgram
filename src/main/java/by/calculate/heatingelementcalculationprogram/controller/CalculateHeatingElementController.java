@@ -1,10 +1,9 @@
 package by.calculate.heatingelementcalculationprogram.controller;
 
 import by.calculate.heatingelementcalculationprogram.InPutProgramWindowApplication;
-import by.calculate.heatingelementcalculationprogram.model.InitialData;
-import by.calculate.heatingelementcalculationprogram.service.CalculateHeatingElementService;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Designation;
+import by.calculate.heatingelementcalculationprogram.service.CalculateHeatingController.AlertCalculateHeatingElementService;
+import by.calculate.heatingelementcalculationprogram.service.CalculateHeatingController.ChoiceBoxCalculateHeatingElementControllerService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,8 +14,6 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static javafx.stage.Modality.WINDOW_MODAL;
 
@@ -172,99 +169,56 @@ public class CalculateHeatingElementController {
 
     @FXML
     private void initialize() {
-        List<String> choiceBoxListPilotBatchCalculateTen = new ArrayList<>();
-        choiceBoxListPilotBatchCalculateTen.add("Опытная партия");
-        choiceBoxListPilotBatchCalculateTen.add("Основное производство");
-        choiceBoxListPilotBatchCalculateTen.add("Мелко-серийное производсто");
-        ObservableList<String> listPilotBatchCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListPilotBatchCalculateTen);
-        pilotBatchCalculateTen.setItems(listPilotBatchCalculateTen);
-        List<String> choiceBoxListSpiralMaterialCalculateTen = new ArrayList<>();
-        choiceBoxListSpiralMaterialCalculateTen.add("20Х80Н10Т");
-        choiceBoxListSpiralMaterialCalculateTen.add("Х23Ю5Т");
-        ObservableList<String> listSpiralMaterialCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListSpiralMaterialCalculateTen);
-        spiralMaterialCalculateTen.setItems(listSpiralMaterialCalculateTen);
-        List<String> choiceBoxListNumberOfWiresInASpiralCalculateTen = new ArrayList<>();
-        choiceBoxListNumberOfWiresInASpiralCalculateTen.add("Одиночная");
-        choiceBoxListNumberOfWiresInASpiralCalculateTen.add("Двойная");
-        choiceBoxListNumberOfWiresInASpiralCalculateTen.add("Тройная");
-        choiceBoxListNumberOfWiresInASpiralCalculateTen.add("Четверная");
-        ObservableList<String> listNumberOfWiresInASpiralCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListNumberOfWiresInASpiralCalculateTen);
-        numberOfWiresInASpiralCalculateTen.setItems(listNumberOfWiresInASpiralCalculateTen);
-        List<Double> choiceBoxListMandrelDiameterCalculateTen = new ArrayList<>();
-        choiceBoxListMandrelDiameterCalculateTen.add(2.5);
-        choiceBoxListMandrelDiameterCalculateTen.add(3.2);
-        ObservableList<Double> listMandrelDiameterCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListMandrelDiameterCalculateTen);
-        mandrelDiameterCalculateTen.setItems(listMandrelDiameterCalculateTen);
-        List<String> choiceBoxListSandCalculateTen = new ArrayList<>();
-        choiceBoxListSandCalculateTen.add("Переклаз Богдановичский 2К");
-        choiceBoxListSandCalculateTen.add("Переклаз Богдановичский 2М");
-        ObservableList<String> listSandCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListSandCalculateTen);
-        sandCalculateTen.setItems(listSandCalculateTen);
-        List<Integer> choiceBoxListPipeBilletDiameterCalculateTen = new ArrayList<>();
-        choiceBoxListPipeBilletDiameterCalculateTen.add(10);
-        choiceBoxListPipeBilletDiameterCalculateTen.add(12);
-        ObservableList<Integer> listPipeBilletDiameterCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListPipeBilletDiameterCalculateTen);
-        pipeBilletDiameterCalculateTen.setItems(listPipeBilletDiameterCalculateTen);
-        List<Double> choiceBoxListPipeThicknessCalculateTen = new ArrayList<>();
-        choiceBoxListPipeThicknessCalculateTen.add(0.4);
-        choiceBoxListPipeThicknessCalculateTen.add(0.5);
-        choiceBoxListPipeThicknessCalculateTen.add(0.6);
-        choiceBoxListPipeThicknessCalculateTen.add(0.8);
-        choiceBoxListPipeThicknessCalculateTen.add(1.0);
-        ObservableList<Double> listPipeThicknessCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListPipeThicknessCalculateTen);
-        pipeThicknessCalculateTen.setItems(listPipeThicknessCalculateTen);
-        List<Integer> choiceBoxListTopStudProtrusionCalculateTen = new ArrayList<>();
-        choiceBoxListTopStudProtrusionCalculateTen.add(15);
-        choiceBoxListTopStudProtrusionCalculateTen.add(25);
-        choiceBoxListTopStudProtrusionCalculateTen.add(28);
-        choiceBoxListTopStudProtrusionCalculateTen.add(35);
-        choiceBoxListTopStudProtrusionCalculateTen.add(38);
-        ObservableList<Integer> listTopStudProtrusionCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListTopStudProtrusionCalculateTen);
-        topStudProtrusionCalculateTen.setItems(listTopStudProtrusionCalculateTen);
-        List<Integer> choiceBoxListBottomStudProtrusionCalculateTen = new ArrayList<>();
-        choiceBoxListBottomStudProtrusionCalculateTen.add(10);
-        choiceBoxListBottomStudProtrusionCalculateTen.add(20);
-        choiceBoxListBottomStudProtrusionCalculateTen.add(30);
-        ObservableList<Integer> listBottomStudProtrusionCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListBottomStudProtrusionCalculateTen);
-        bottomStudProtrusionCalculateTen.setItems(listBottomStudProtrusionCalculateTen);
-        List<String> choiceBoxListTopStudContactTypeCalculateTen = new ArrayList<>();
-        choiceBoxListTopStudContactTypeCalculateTen.add("Верх 2.0/2,65/    /М3");
-        choiceBoxListTopStudContactTypeCalculateTen.add("Верх 2.0/М3/    /М3");
-        choiceBoxListTopStudContactTypeCalculateTen.add("Верх 2.0/М4/    /М3");
-        choiceBoxListTopStudContactTypeCalculateTen.add("Верх 2.0/М4/    /М4");
-        ObservableList<String> listTopStudContactTypeCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListTopStudContactTypeCalculateTen);
-        topStudContactTypeCalculateTen.setItems(listTopStudContactTypeCalculateTen);
-        List<String> choiceBoxListBottomStudContactTypeCalculateTen = new ArrayList<>();
-        choiceBoxListBottomStudContactTypeCalculateTen.add("Низ 2,65/    /10/М3");
-        choiceBoxListBottomStudContactTypeCalculateTen.add("Низ 2,65/    /20/М3");
-        choiceBoxListBottomStudContactTypeCalculateTen.add("Низ М3/    /М3");
-        choiceBoxListBottomStudContactTypeCalculateTen.add("Низ М4/    /М3");
-        choiceBoxListBottomStudContactTypeCalculateTen.add("Низ М4/    /М4");
-        ObservableList<String> listBottomStudContactTypeCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListBottomStudContactTypeCalculateTen);
-        bottomStudContactTypeCalculateTen.setItems(listBottomStudContactTypeCalculateTen);
-        List<String> choiceBoxListSpiralFiringCalculateTen = new ArrayList<>();
-        choiceBoxListSpiralFiringCalculateTen.add("Да");
-        choiceBoxListSpiralFiringCalculateTen.add("Нет");
-        ObservableList<String> listSpiralFiringCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListSpiralFiringCalculateTen);
-        spiralFiringCalculateTen.setItems(listSpiralFiringCalculateTen);
-        List<String> choiceBoxListGostCalculateTen = new ArrayList<>();
-        choiceBoxListGostCalculateTen.add("ГОСТ-13286-83");
-        choiceBoxListGostCalculateTen.add("ГОСТ-13286-81");
-        ObservableList<String> listGostCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListGostCalculateTen);
-        gostCalculateTen.setItems(listGostCalculateTen);
+        pilotBatchCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
+                getChoiceBoxListPilotBatchCalculateTen());
+        pilotBatchCalculateTen.setValue("Опытная партия");
+
+        spiralMaterialCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
+                getChoiceBoxListSpiralMaterialCalculateTen());
+        spiralMaterialCalculateTen.setValue("20Х80Н10Т");
+
+        numberOfWiresInASpiralCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
+                getChoiceBoxListNumberOfWiresInASpiralCalculateTen());
+        numberOfWiresInASpiralCalculateTen.setValue("Одиночная");
+
+        mandrelDiameterCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
+                getChoiceBoxListMandrelDiameterCalculateTen());
+        mandrelDiameterCalculateTen.setValue(2.5);
+
+        sandCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.getChoiceBoxListSandCalculateTen());
+        sandCalculateTen.setValue("Переклаз Богдановичский 2К");
+
+        pipeBilletDiameterCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
+                getChoiceBoxListPipeBilletDiameterCalculateTen());
+        pipeBilletDiameterCalculateTen.setValue(10);
+
+        pipeThicknessCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
+                getChoiceBoxListPipeThicknessCalculateTen());
+        pipeThicknessCalculateTen.setValue(0.4);
+
+        topStudProtrusionCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
+                getChoiceBoxListTopStudProtrusionCalculateTen());
+        topStudProtrusionCalculateTen.setValue(25);
+
+        bottomStudProtrusionCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
+                getChoiceBoxListBottomStudProtrusionCalculateTen());
+        bottomStudProtrusionCalculateTen.setValue(20);
+
+        topStudContactTypeCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
+                getChoiceBoxListTopStudContactTypeCalculateTen());
+        topStudContactTypeCalculateTen.setValue("Верх 2.0/2,65/    /М3");
+
+        bottomStudContactTypeCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
+                getChoiceBoxListBottomStudContactTypeCalculateTen());
+        bottomStudContactTypeCalculateTen.setValue("Низ 2,65/    /10/М3");
+
+        spiralFiringCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
+                getChoiceBoxListSpiralFiringCalculateTen());
+        spiralFiringCalculateTen.setValue("Да");
+
+        gostCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
+                getChoiceBoxListGostCalculateTen());
+        gostCalculateTen.setValue("ГОСТ-13286-83");
     }
 
         private String[] arrayOfDesignationOfThermalElectricHeater() {
@@ -356,19 +310,19 @@ public class CalculateHeatingElementController {
         stage.setTitle("Data base table");
         stage.initModality(WINDOW_MODAL);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-        if (CalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()).equals("Заполните следующие поля")) {
-            DataBaseController dataBaseController = loader.getController();
+        if (AlertCalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()).equals("Заполните следующие поля")) {
+/*            DataBaseController dataBaseController = loader.getController();
             InitialData dateOfCalculate = new InitialData(Double.parseDouble(lengthTenCalculateTen.getText()),
                     Double.parseDouble(studLengthCalculateTen.getText()), Double.parseDouble(diameterTenCalculateTen.getText()),
                     Double.parseDouble(powerTenCalculateTen.getText()), workspaceCalculateTen.getText(),
                     Double.parseDouble(voltageCalculateTen.getText()));
-            dataBaseController.onTransferData(dateOfCalculate);
+            dataBaseController.onTransferData(dateOfCalculate);*/
             stage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ошибка");
-            alert.setHeaderText(CalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()) +
-                    CalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()));
+            alert.setHeaderText(AlertCalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()) +
+                    AlertCalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()));
             alert.showAndWait();
         }
     }
@@ -382,19 +336,20 @@ public class CalculateHeatingElementController {
         stage.setTitle("Formed Calculate Heating Element");
         stage.initModality(WINDOW_MODAL);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-        if (CalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()).equals("Заполните следующие поля") &&
-            CalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()).equals("Заполните следующие поля")) {
+        if (AlertCalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()).equals("Заполните следующие поля") &&
+            AlertCalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()).equals("Заполните следующие поля")) {
             FormedCalculateHeatingElementController formedCalculateHeatingElementController = loader.getController();
-            InitialData dateOfCalculate = new InitialData(Double.parseDouble(lengthTenCalculateTen.getText()),
+            Designation dateOfCalculate = new Designation(Double.parseDouble(lengthTenCalculateTen.getText()),
             Double.parseDouble(studLengthCalculateTen.getText()), Double.parseDouble(diameterTenCalculateTen.getText()),
-            Double.parseDouble(powerTenCalculateTen.getText()), workspaceCalculateTen.getText(), Double.parseDouble(voltageCalculateTen.getText()));
+            Double.parseDouble(powerTenCalculateTen.getText()), workspaceCalculateTen.getText(),
+            Double.parseDouble(voltageCalculateTen.getText()));
             formedCalculateHeatingElementController.onTransferData(dateOfCalculate);
             stage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ошибка");
-            alert.setHeaderText(CalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()) +
-                    CalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()));
+            alert.setHeaderText(AlertCalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()) +
+                    AlertCalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()));
             alert.showAndWait();
 
         }
