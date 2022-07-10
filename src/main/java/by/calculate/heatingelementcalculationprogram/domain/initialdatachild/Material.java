@@ -1,6 +1,8 @@
 package by.calculate.heatingelementcalculationprogram.domain.initialdatachild;
 
-public class Material {
+import java.io.Serializable;
+
+public class Material implements Serializable {
 
     private String spiralMaterialSpiral;
     private String numberOfWiresInASpiral;
@@ -10,15 +12,14 @@ public class Material {
     private Double pipeThickness;
     private Double topStudProtrusion;
     private Double bottomStudProtrusion;
-    private Double topStudContactType;
-    private Double bottomStudContactType;
+    private String topStudContactType;
+    private String bottomStudContactType;
     private String spiralFiring;
-    private String Gost;
+    private String gost;
 
-    public Material(String spiralMaterialSpiral, String numberOfWiresInASpiral, Double mandrelDiameter,
-                    String sand, Double pipeBilletDiameter, Double pipeThickness, Double topStudProtrusion,
-                    Double bottomStudProtrusion, Double topStudContactType, Double bottomStudContactType,
-                    String spiralFiring, String gost) {
+    public Material(String spiralMaterialSpiral, String numberOfWiresInASpiral, Double mandrelDiameter, String sand,
+                    Double pipeBilletDiameter, Double pipeThickness, Double topStudProtrusion, Double bottomStudProtrusion,
+                    String topStudContactType, String bottomStudContactType, String spiralFiring, String gost) {
         this.spiralMaterialSpiral = spiralMaterialSpiral;
         this.numberOfWiresInASpiral = numberOfWiresInASpiral;
         this.mandrelDiameter = mandrelDiameter;
@@ -30,7 +31,7 @@ public class Material {
         this.topStudContactType = topStudContactType;
         this.bottomStudContactType = bottomStudContactType;
         this.spiralFiring = spiralFiring;
-        Gost = gost;
+        this.gost = gost;
     }
 
     public String getSpiralMaterialSpiral() {
@@ -97,19 +98,19 @@ public class Material {
         this.bottomStudProtrusion = bottomStudProtrusion;
     }
 
-    public Double getTopStudContactType() {
+    public String getTopStudContactType() {
         return topStudContactType;
     }
 
-    public void setTopStudContactType(Double topStudContactType) {
+    public void setTopStudContactType(String topStudContactType) {
         this.topStudContactType = topStudContactType;
     }
 
-    public Double getBottomStudContactType() {
+    public String getBottomStudContactType() {
         return bottomStudContactType;
     }
 
-    public void setBottomStudContactType(Double bottomStudContactType) {
+    public void setBottomStudContactType(String bottomStudContactType) {
         this.bottomStudContactType = bottomStudContactType;
     }
 
@@ -122,11 +123,11 @@ public class Material {
     }
 
     public String getGost() {
-        return Gost;
+        return gost;
     }
 
     public void setGost(String gost) {
-        Gost = gost;
+        this.gost = gost;
     }
 
     @Override
@@ -143,7 +144,7 @@ public class Material {
                 ", topStudContactType=" + topStudContactType +
                 ", bottomStudContactType=" + bottomStudContactType +
                 ", spiralFiring='" + spiralFiring + '\'' +
-                ", Gost='" + Gost + '\'' +
+                ", Gost='" + gost + '\'' +
                 '}';
     }
 }

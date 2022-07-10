@@ -9,16 +9,12 @@ public class DesignationDto {
     private Double powerTen;
     private String workspaceTen;
     private Double voltageTen;
+    private Integer customerId;
+    private Integer coefficientId;
+    private Integer materialId;
 
-    public DesignationDto(Integer id, Double lengthTen, Double studLengthTen, Double diameterTen, Double powerTen,
-                          String workspaceTen, Double voltageTen) {
-        this.id = id;
-        this.lengthTen = lengthTen;
-        this.studLengthTen = studLengthTen;
-        this.diameterTen = diameterTen;
-        this.powerTen = powerTen;
-        this.workspaceTen = workspaceTen;
-        this.voltageTen = voltageTen;
+
+    public DesignationDto() {
     }
 
     public DesignationDto(Double lengthTen, Double studLengthTen, Double diameterTen, Double powerTen,
@@ -31,7 +27,30 @@ public class DesignationDto {
         this.voltageTen = voltageTen;
     }
 
-    public DesignationDto() {
+    public DesignationDto(Integer id, Double lengthTen, Double studLengthTen, Double diameterTen, Double powerTen,
+                          String workspaceTen, Double voltageTen) {
+        this.id = id;
+        this.lengthTen = lengthTen;
+        this.studLengthTen = studLengthTen;
+        this.diameterTen = diameterTen;
+        this.powerTen = powerTen;
+        this.workspaceTen = workspaceTen;
+        this.voltageTen = voltageTen;
+    }
+
+    public DesignationDto(Integer id, Double lengthTen, Double studLengthTen, Double diameterTen, Double powerTen,
+                          String workspaceTen, Double voltageTen, Integer customerId, Integer coefficientId,
+                          Integer materialId) {
+        this.id = id;
+        this.lengthTen = lengthTen;
+        this.studLengthTen = studLengthTen;
+        this.diameterTen = diameterTen;
+        this.powerTen = powerTen;
+        this.workspaceTen = workspaceTen;
+        this.voltageTen = voltageTen;
+        this.customerId = customerId;
+        this.coefficientId = coefficientId;
+        this.materialId = materialId;
     }
 
     public Integer getId() {
@@ -90,6 +109,30 @@ public class DesignationDto {
         this.voltageTen = voltageTen;
     }
 
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public Integer getCoefficientId() {
+        return coefficientId;
+    }
+
+    public void setCoefficientId(Integer coefficientId) {
+        this.coefficientId = coefficientId;
+    }
+
+    public Integer getMaterialId() {
+        return materialId;
+    }
+
+    public void setMaterialId(Integer materialId) {
+        this.materialId = materialId;
+    }
+
     @Override
     public String toString() {
         return "DesignationDto{" +
@@ -100,6 +143,9 @@ public class DesignationDto {
                 ", powerTen=" + powerTen +
                 ", workspaceTen='" + workspaceTen + '\'' +
                 ", voltageTen=" + voltageTen +
+                ", customerId=" + customerId +
+                ", coefficientId=" + coefficientId +
+                ", materialId=" + materialId +
                 '}';
     }
 }

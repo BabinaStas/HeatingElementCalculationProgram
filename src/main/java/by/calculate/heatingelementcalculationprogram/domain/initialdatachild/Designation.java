@@ -1,6 +1,8 @@
 package by.calculate.heatingelementcalculationprogram.domain.initialdatachild;
 
-public class Designation {
+import java.io.Serializable;
+
+public class Designation implements Serializable {
 
     private Double lengthTen;
     private Double studLengthTen;

@@ -222,7 +222,7 @@
                         <Font name="icomoon" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="mandrelDiameterFormedCalculateTen" text="0,4" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label fx:id="mandrelDiameterSpiralFormedCalculateTen" text="0,4" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font name="icomoon" size="18.0" />
                      </font>

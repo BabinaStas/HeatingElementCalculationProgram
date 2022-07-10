@@ -1,6 +1,8 @@
 package by.calculate.heatingelementcalculationprogram.domain.initialdatachild;
 
-public class Coefficient {
+import java.io.Serializable;
+
+public class Coefficient implements Serializable {
 
     private Double spiralReductionFactorTen;
     private Double pipeElongationFactorTen;

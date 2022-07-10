@@ -56,11 +56,11 @@ public class ChoiceBoxCalculateHeatingElementControllerService {
         return listSandCalculateTen;
     }
 
-    public static ObservableList<Integer> getChoiceBoxListPipeBilletDiameterCalculateTen(){
-        List<Integer> choiceBoxListPipeBilletDiameterCalculateTen = new ArrayList<>();
-        choiceBoxListPipeBilletDiameterCalculateTen.add(10);
-        choiceBoxListPipeBilletDiameterCalculateTen.add(12);
-        ObservableList<Integer> listPipeBilletDiameterCalculateTen =
+    public static ObservableList<Double> getChoiceBoxListPipeBilletDiameterCalculateTen(){
+        List<Double> choiceBoxListPipeBilletDiameterCalculateTen = new ArrayList<>();
+        choiceBoxListPipeBilletDiameterCalculateTen.add(10.0);
+        choiceBoxListPipeBilletDiameterCalculateTen.add(12.0);
+        ObservableList<Double> listPipeBilletDiameterCalculateTen =
                 FXCollections.observableArrayList(choiceBoxListPipeBilletDiameterCalculateTen);
         return listPipeBilletDiameterCalculateTen;
     }
@@ -89,12 +89,12 @@ public class ChoiceBoxCalculateHeatingElementControllerService {
         return listTopStudProtrusionCalculateTen;
     }
 
-    public static ObservableList<Integer> getChoiceBoxListBottomStudProtrusionCalculateTen(){
-        List<Integer> choiceBoxListBottomStudProtrusionCalculateTen = new ArrayList<>();
-        choiceBoxListBottomStudProtrusionCalculateTen.add(10);
-        choiceBoxListBottomStudProtrusionCalculateTen.add(20);
-        choiceBoxListBottomStudProtrusionCalculateTen.add(30);
-        ObservableList<Integer> listBottomStudProtrusionCalculateTen =
+    public static ObservableList<Double> getChoiceBoxListBottomStudProtrusionCalculateTen(){
+        List<Double> choiceBoxListBottomStudProtrusionCalculateTen = new ArrayList<>();
+        choiceBoxListBottomStudProtrusionCalculateTen.add(10.0);
+        choiceBoxListBottomStudProtrusionCalculateTen.add(20.0);
+        choiceBoxListBottomStudProtrusionCalculateTen.add(30.0);
+        ObservableList<Double> listBottomStudProtrusionCalculateTen =
                 FXCollections.observableArrayList(choiceBoxListBottomStudProtrusionCalculateTen);
         return listBottomStudProtrusionCalculateTen;
     }

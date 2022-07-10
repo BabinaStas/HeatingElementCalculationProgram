@@ -3,6 +3,7 @@ package by.calculate.heatingelementcalculationprogram.controller;
 import by.calculate.heatingelementcalculationprogram.InPutProgramWindowApplication;
 import by.calculate.heatingelementcalculationprogram.domain.InitialData;
 import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Designation;
+import by.calculate.heatingelementcalculationprogram.service.MethodsElectroPhysicalCalculation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +11,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.converter.LocalDateStringConverter;
 
 import java.io.*;
+import java.util.Date;
 
 import static javafx.stage.Modality.WINDOW_MODAL;
 
@@ -58,7 +61,7 @@ public class FormedCalculateHeatingElementController {
     private Label lengthTenFormedCalculateTen;
 
     @FXML
-    private Label mandrelDiameterFormedCalculateTen;
+    private Label mandrelDiameterSpiralFormedCalculateTen;
 
     @FXML
     private Label mandrelDiameterContactFormedCalculateTen;
@@ -129,7 +132,7 @@ public class FormedCalculateHeatingElementController {
     @FXML
     private Label permissibleResistanceRangeForTheHeatingElementFormedCalculateTen;
 
-    Designation transferDesignation;
+    InitialData transferInitialData;
 
     @FXML
     private void onCalculateHeatingElementControllerShow(ActionEvent event) throws IOException {
@@ -154,30 +157,63 @@ public class FormedCalculateHeatingElementController {
     }
 
     @FXML
-    protected void onTransferData(Designation designation) {
-        lengthTenFormedCalculateTen.setText(designation.getLengthTen().toString());
-        studLengthFormedCalculateTen.setText(designation.getStudLengthTen().toString());
-        diameterTenFormedCalculateTen.setText(designation.getDiameterTen().toString());
-        powerTenFormedCalculateTen.setText(designation.getPowerTen().toString());
-        workspaceFormedCalculateTen.setText(designation.getWorkspaceTen());
-        voltageFormedCalculateTen.setText(designation.getVoltageTen().toString());
-        transferDesignation = designation;
+    protected void onTransferData(InitialData initialData) {
+        lengthTenFormedCalculateTen.setText(initialData.getDesignation().getLengthTen().toString());
+        studLengthFormedCalculateTen.setText(initialData.getDesignation().getStudLengthTen().toString());
+        diameterTenFormedCalculateTen.setText(initialData.getDesignation().getDiameterTen().toString());
+        powerTenFormedCalculateTen.setText(initialData.getDesignation().getPowerTen().toString());
+        workspaceFormedCalculateTen.setText(initialData.getDesignation().getWorkspaceTen());
+        voltageFormedCalculateTen.setText(initialData.getDesignation().getVoltageTen().toString());
+        numberOrderFormedCalculateTen.setText(initialData.getCustomer().getNumberOrder());
+        dateFormedCalculateTen.setText(String.valueOf(new Date()));
+        customerFormedCalculateTen.setText(initialData.getCustomer().getCustomer());
+        pilotBatchFormedCalculateTen.setText(initialData.getCustomer().getPilotBatch());
+        numberOfProductsFormedCalculateTen.setText(initialData.getCustomer().getNumberOfProducts());
+        sandFormedCalculateTen.setText(initialData.getMaterial().getSand());
+        spiralMaterialFormedCalculateTen.setText(initialData.getMaterial().getSpiralMaterialSpiral());
+        mandrelDiameterContactFormedCalculateTen.setText(initialData.getMaterial().getMandrelDiameter().toString());
+        mandrelDiameterSpiralFormedCalculateTen.setText(initialData.getCoefficient().getDiameterSpiral().toString());
+        lengthContanctFormedCalculateTen.setText(MethodsElectroPhysicalCalculation.getLengthContact(initialData).toString());
+        heatingElementResistanceFormedCalculateTen.setText(MethodsElectroPhysicalCalculation.
+                getHeatingElementResistance(initialData).toString());
+        permissibleResistanceRangeForTheHeatingElementFormedCalculateTen.setText(MethodsElectroPhysicalCalculation.
+                getPermissibleResistanceRangeForTheHeatingElement(initialData));
+        lengthOfTheCompressedSpiralFormedCalculateTen.setText(MethodsElectroPhysicalCalculation.
+                getLengthOfTheCompressedSpiral(initialData).toString());
+        totalWireLengthFormedCalculateTen.setText(MethodsElectroPhysicalCalculation.
+                getTotalWireLengthFormedCalculateTen(initialData).toString());
+        lengthOfTheActivePartFormedCalculateTen.setText(MethodsElectroPhysicalCalculation.getLongActivePart(initialData).toString());
+        specificLoadOnTheWireFormedCalculateTen.setText(MethodsElectroPhysicalCalculation.
+                getSpecificLoadOnTheWire(initialData).toString());
+        pipeBilletDiameterFormedCalculateTen.setText(initialData.getMaterial().getPipeBilletDiameter().toString());
+        pipeThicknessFormedCalculateTen.setText(initialData.getMaterial().getPipeThickness().toString());
+        pipeBlankLengthFormedCalculateTen.setText(MethodsElectroPhysicalCalculation.
+                getPipeBlankLengthFormedCalculateTen(initialData).toString());
+        pipeElongationFactorFormedCalculateTen.setText(initialData.getCoefficient().getPipeElongationFactorTen().toString());
+        spiralReductionFactorFormedCalculateTen.setText(initialData.getCoefficient().getSpiralReductionFactorTen().toString());
+        specificLoadOnTheWireFormedCalculateTen.setText(initialData.getMaterial().getSpiralFiring());
+        gostFormedCalculateTen.setText(initialData.getMaterial().getGost());
+        topStudContactTypeFormedCalculateTen.setText(initialData.getMaterial().getTopStudContactType());
+        bottomStudContactTypeFormedCalculateTen.setText(initialData.getMaterial().getBottomStudContactType());
+        topStudProtrusionFormedCalculateTen.setText(initialData.getMaterial().getTopStudProtrusion().toString());
+        bottomStudProtrusionFormedCalculateTen.setText(initialData.getMaterial().getBottomStudProtrusion().toString());
+        transferInitialData = initialData;
     }
 
     @FXML
     private void onSaveFormedCalculationTen(ActionEvent event) throws IOException {
-        saveDesignation(transferDesignation);
+        saveDesignation(transferInitialData);
     }
 
-    protected void saveDesignation(Designation designation) {
+    protected void saveDesignation(InitialData initialData) {
 
         File fileInitialData = new File("resource\\initialData.dat");
 
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(fileInitialData));
              ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileInitialData))) {
-             objectOutputStream.writeObject(designation);
-             Designation designation1 = (Designation) objectInputStream.readObject();
-             System.out.println(designation1);
+             objectOutputStream.writeObject(initialData);
+             InitialData initialData1 = (InitialData) objectInputStream.readObject();
+             System.out.println(initialData1);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

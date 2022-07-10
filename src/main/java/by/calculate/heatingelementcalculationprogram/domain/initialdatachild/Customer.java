@@ -1,6 +1,9 @@
 package by.calculate.heatingelementcalculationprogram.domain.initialdatachild;
 
-public class Customer {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Customer implements Serializable {
 
     private String numberOrder;
     private String customer;

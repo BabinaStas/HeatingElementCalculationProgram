@@ -1,7 +1,11 @@
 package by.calculate.heatingelementcalculationprogram.controller;
 
 import by.calculate.heatingelementcalculationprogram.InPutProgramWindowApplication;
+import by.calculate.heatingelementcalculationprogram.domain.InitialData;
+import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Coefficient;
+import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Customer;
 import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Designation;
+import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Material;
 import by.calculate.heatingelementcalculationprogram.service.CalculateHeatingController.AlertCalculateHeatingElementService;
 import by.calculate.heatingelementcalculationprogram.service.CalculateHeatingController.ChoiceBoxCalculateHeatingElementControllerService;
 import javafx.event.ActionEvent;
@@ -27,7 +31,7 @@ public class CalculateHeatingElementController {
     private Label bottomStudContactTypeLabel;
 
     @FXML
-    private ChoiceBox<Integer> bottomStudProtrusionCalculateTen;
+    private ChoiceBox<Double> bottomStudProtrusionCalculateTen;
 
     @FXML
     private Label bottomStudProtrusionLabel;
@@ -93,7 +97,7 @@ public class CalculateHeatingElementController {
     private Label pilotBatchLabel;
 
     @FXML
-    private ChoiceBox<Integer> pipeBilletDiameterCalculateTen;
+    private ChoiceBox<Double> pipeBilletDiameterCalculateTen;
 
     @FXML
     private Label pipeBilletDiameterLabel;
@@ -190,7 +194,7 @@ public class CalculateHeatingElementController {
 
         pipeBilletDiameterCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
                 getChoiceBoxListPipeBilletDiameterCalculateTen());
-        pipeBilletDiameterCalculateTen.setValue(10);
+        pipeBilletDiameterCalculateTen.setValue(10.0);
 
         pipeThicknessCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
                 getChoiceBoxListPipeThicknessCalculateTen());
@@ -202,7 +206,7 @@ public class CalculateHeatingElementController {
 
         bottomStudProtrusionCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
                 getChoiceBoxListBottomStudProtrusionCalculateTen());
-        bottomStudProtrusionCalculateTen.setValue(20);
+        bottomStudProtrusionCalculateTen.setValue(20.0);
 
         topStudContactTypeCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
                 getChoiceBoxListTopStudContactTypeCalculateTen());
@@ -339,10 +343,19 @@ public class CalculateHeatingElementController {
         if (AlertCalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()).equals("Заполните следующие поля") &&
             AlertCalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()).equals("Заполните следующие поля")) {
             FormedCalculateHeatingElementController formedCalculateHeatingElementController = loader.getController();
-            Designation dateOfCalculate = new Designation(Double.parseDouble(lengthTenCalculateTen.getText()),
+            InitialData dateOfCalculate = new InitialData(new Designation(Double.parseDouble(lengthTenCalculateTen.getText()),
             Double.parseDouble(studLengthCalculateTen.getText()), Double.parseDouble(diameterTenCalculateTen.getText()),
             Double.parseDouble(powerTenCalculateTen.getText()), workspaceCalculateTen.getText(),
-            Double.parseDouble(voltageCalculateTen.getText()));
+            Double.parseDouble(voltageCalculateTen.getText())), new Customer(numberOrderCalculateTen.getText(),
+            customerCalculateTen.getText(), numberOfProductsCalculateTen.getText(), pilotBatchCalculateTen.getValue()),
+            new Coefficient(Double.parseDouble(spiralReductionFactorCalculateTen.getText()), Double.parseDouble(pipeElongationFactorCalculateTen.getText()),
+            Double.parseDouble(diameterSpiralCalculateTen.getText()),Double.parseDouble(temperatureSpiralCalculateTen.getText())),
+            new Material(spiralMaterialCalculateTen.getValue(), numberOfWiresInASpiralCalculateTen.getValue(),
+            Double.parseDouble(mandrelDiameterCalculateTen.getValue().toString()),sandCalculateTen.getValue(), Double.parseDouble(pipeBilletDiameterCalculateTen.getValue().toString()),
+            Double.parseDouble(pipeThicknessCalculateTen.getValue().toString()), Double.parseDouble(topStudProtrusionCalculateTen.getValue().toString()),
+            Double.parseDouble(bottomStudProtrusionCalculateTen.getValue().toString()), topStudContactTypeCalculateTen.getValue(),
+            bottomStudContactTypeCalculateTen.getValue(), spiralFiringCalculateTen.getValue().toString(),
+            gostCalculateTen.getValue().toString()));
             formedCalculateHeatingElementController.onTransferData(dateOfCalculate);
             stage.show();
         } else {

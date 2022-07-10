@@ -15,8 +15,8 @@ public class MethodsElectroPhysicalCalculation {
     }
 
     /*Длинна шпильки*/
-    public static Integer getLengthContanct(InitialData lengthContanct){
-        return Integer.parseInt(lengthContanct.getDesignation().getStudLengthTen().toString()) + 25;
+    public static Integer getLengthContact(InitialData lengthContact){
+        return (lengthContact.getDesignation().getStudLengthTen().intValue()) + 25;
 
     }
 
