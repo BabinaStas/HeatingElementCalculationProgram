@@ -49,8 +49,8 @@ public class InPutProgramWindowController {
                 break;
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error");
-                alert.setHeaderText("Login or password entered incorrectly");
+                alert.setTitle("Ошибка инициализации.");
+                alert.setHeaderText("Логин или пароль введен неверно. ");
                 alert.showAndWait();
                 break;
             }

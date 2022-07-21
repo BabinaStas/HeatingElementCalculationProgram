@@ -20,9 +20,13 @@ import java.io.IOException;
 
 import static javafx.stage.Modality.WINDOW_MODAL;
 
-public class DataBaseController {
+public class DataBaseDesignationController {
+
 
     private ObservableList<InitialData> initialData = FXCollections.observableArrayList();
+
+    @FXML
+    public Button onChangeControllerDataBase;
 
     @FXML
     private Button backToCalculateDataBase;
@@ -77,14 +81,15 @@ public class DataBaseController {
 
         designations.addAll(designationService.getDesignations());
         dataBaseTableDatabase.setItems(designations);
-
     }
 
-/*    @FXML
-    protected void onWriteTable() {
-        dataBaseTableDatabase.setItems(null);
-        dataBaseTableDatabase.setItems(initialData);
-    }*/
+    @FXML
+    protected void onRemoveRow() {
+        int row = dataBaseTableDatabase.getSelectionModel().getFocusedIndex();
+        Designation selectDesignation = dataBaseTableDatabase.getItems().get(row);
+        dataBaseTableDatabase.getItems().remove(selectDesignation);
+        designationService.deleteById(selectDesignation.getId());
+    }
 
     @FXML
     private void onCalculateHeatingElementControllerShow(ActionEvent event) throws IOException {
@@ -109,9 +114,7 @@ public class DataBaseController {
     }
 
 /*    @FXML
-    protected void onTransferData(InitialData initialData) {
-        dataBaseTableDatabase.getItems().add(initialData);
-        ObservableList<InitialData> items = dataBaseTableDatabase.getItems();
-        items.add(initialData);
+    protected void onTransferDesignation(Designation newDesignation) {
+        dataBaseTableDatabase.getItems().add(newDesignation);
     }*/
 }

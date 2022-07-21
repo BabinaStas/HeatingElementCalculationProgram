@@ -160,7 +160,7 @@ public class CalculateHeatingElementController {
     private Label topStudContactTypeLabel;
 
     @FXML
-    private ChoiceBox<Integer> topStudProtrusionCalculateTen;
+    private ChoiceBox<Double> topStudProtrusionCalculateTen;
 
     @FXML
     private Label topStudProtrusionLabel;
@@ -202,7 +202,7 @@ public class CalculateHeatingElementController {
 
         topStudProtrusionCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
                 getChoiceBoxListTopStudProtrusionCalculateTen());
-        topStudProtrusionCalculateTen.setValue(25);
+        topStudProtrusionCalculateTen.setValue(25.0);
 
         bottomStudProtrusionCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
                 getChoiceBoxListBottomStudProtrusionCalculateTen());
@@ -225,14 +225,20 @@ public class CalculateHeatingElementController {
         gostCalculateTen.setValue("ГОСТ-13286-83");
     }
 
-        private String[] arrayOfDesignationOfThermalElectricHeater() {
-        String[] array = new String[6];
-        array[0] = lengthTenCalculateTen.getText();
-        array[1] = studLengthCalculateTen.getText();
-        array[2] = diameterTenCalculateTen.getText();
-        array[3] = powerTenCalculateTen.getText();
-        array[4] = workspaceCalculateTen.getText();
-        array[5] = voltageCalculateTen.getText();
+        private String[][] arrayOfDesignationOfThermalElectricHeater() {
+        String[][] array = new String[6][2];
+        array[0][0] = lengthTenCalculateTen.getPromptText();
+        array[0][1] = lengthTenCalculateTen.getText();
+        array[1][0] = studLengthCalculateTen.getPromptText();
+        array[1][1] = studLengthCalculateTen.getText();
+        array[2][0] = diameterTenCalculateTen.getPromptText();
+        array[2][1] = diameterTenCalculateTen.getText();
+        array[3][0] = powerTenCalculateTen.getPromptText();
+        array[3][1] = powerTenCalculateTen.getText();
+        array[4][0] = workspaceCalculateTen.getPromptText();
+        array[4][1] = workspaceCalculateTen.getText();
+        array[5][0] = voltageCalculateTen.getPromptText();
+        array[5][1] = voltageCalculateTen.getText();
         return array;
     }
 
@@ -309,24 +315,18 @@ public class CalculateHeatingElementController {
     @FXML
     protected void onDataBaseControllerShow(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("dataBase.fxml"));
+        FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("dataBaseDesignation.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("Data base table");
         stage.initModality(WINDOW_MODAL);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-        if (AlertCalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()).equals("Заполните следующие поля")) {
-/*            DataBaseController dataBaseController = loader.getController();
-            InitialData dateOfCalculate = new InitialData(Double.parseDouble(lengthTenCalculateTen.getText()),
-                    Double.parseDouble(studLengthCalculateTen.getText()), Double.parseDouble(diameterTenCalculateTen.getText()),
-                    Double.parseDouble(powerTenCalculateTen.getText()), workspaceCalculateTen.getText(),
-                    Double.parseDouble(voltageCalculateTen.getText()));
-            dataBaseController.onTransferData(dateOfCalculate);*/
-            stage.show();
+        if (AlertCalculateHeatingElementService.fillingWindow(arrayOfInitialData()).equals(" ")) {
+        stage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ошибка");
-            alert.setHeaderText(AlertCalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()) +
-                    AlertCalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()));
+            alert.setTitle("Незаполнены все поля исходных данных.");
+            alert.setHeaderText("Заполните следующие поля: " + AlertCalculateHeatingElementService.fillingWindow(arrayOfInitialData()) +
+            AlertCalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()));
             alert.showAndWait();
         }
     }
@@ -340,19 +340,22 @@ public class CalculateHeatingElementController {
         stage.setTitle("Formed Calculate Heating Element");
         stage.initModality(WINDOW_MODAL);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-        if (AlertCalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()).equals("Заполните следующие поля") &&
-            AlertCalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()).equals("Заполните следующие поля")) {
+        if (AlertCalculateHeatingElementService.fillingWindow(arrayOfInitialData()).equals(" ") &&
+            AlertCalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()).equals(" ")) {
             FormedCalculateHeatingElementController formedCalculateHeatingElementController = loader.getController();
             InitialData dateOfCalculate = new InitialData(new Designation(Double.parseDouble(lengthTenCalculateTen.getText()),
             Double.parseDouble(studLengthCalculateTen.getText()), Double.parseDouble(diameterTenCalculateTen.getText()),
             Double.parseDouble(powerTenCalculateTen.getText()), workspaceCalculateTen.getText(),
             Double.parseDouble(voltageCalculateTen.getText())), new Customer(numberOrderCalculateTen.getText(),
             customerCalculateTen.getText(), numberOfProductsCalculateTen.getText(), pilotBatchCalculateTen.getValue()),
-            new Coefficient(Double.parseDouble(spiralReductionFactorCalculateTen.getText()), Double.parseDouble(pipeElongationFactorCalculateTen.getText()),
+            new Coefficient(Double.parseDouble(spiralReductionFactorCalculateTen.getText()),
+            Double.parseDouble(pipeElongationFactorCalculateTen.getText()),
             Double.parseDouble(diameterSpiralCalculateTen.getText()),Double.parseDouble(temperatureSpiralCalculateTen.getText())),
             new Material(spiralMaterialCalculateTen.getValue(), numberOfWiresInASpiralCalculateTen.getValue(),
-            Double.parseDouble(mandrelDiameterCalculateTen.getValue().toString()),sandCalculateTen.getValue(), Double.parseDouble(pipeBilletDiameterCalculateTen.getValue().toString()),
-            Double.parseDouble(pipeThicknessCalculateTen.getValue().toString()), Double.parseDouble(topStudProtrusionCalculateTen.getValue().toString()),
+            Double.parseDouble(mandrelDiameterCalculateTen.getValue().toString()),sandCalculateTen.getValue(),
+            Double.parseDouble(pipeBilletDiameterCalculateTen.getValue().toString()),
+            Double.parseDouble(pipeThicknessCalculateTen.getValue().toString()),
+            Double.parseDouble(topStudProtrusionCalculateTen.getValue().toString()),
             Double.parseDouble(bottomStudProtrusionCalculateTen.getValue().toString()), topStudContactTypeCalculateTen.getValue(),
             bottomStudContactTypeCalculateTen.getValue(), spiralFiringCalculateTen.getValue().toString(),
             gostCalculateTen.getValue().toString()));
@@ -360,9 +363,9 @@ public class CalculateHeatingElementController {
             stage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ошибка");
-            alert.setHeaderText(AlertCalculateHeatingElementService.fillingInitialDataWindow(arrayOfInitialData()) +
-                    AlertCalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()));
+            alert.setTitle("Незаполнены все поля исходных данных.");
+            alert.setHeaderText("Заполните следующие поля: " + AlertCalculateHeatingElementService.fillingWindow(arrayOfInitialData()) +
+            AlertCalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()));
             alert.showAndWait();
 
         }

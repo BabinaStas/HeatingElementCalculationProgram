@@ -75,11 +75,10 @@ public class InitialData implements Serializable {
 
     @Override
     public String toString() {
-        return "InitialData{" +
-                "designation=" + designation +
-                ", customer=" + customer +
-                ", coefficient=" + coefficient +
-                ", material=" + material +
-                '}';
+        return "Расчет ТЭНа : " +
+                "\nОбозначение: " + designation +
+                ",\nБлок Заказчика: " + customer +
+                ",\nБлок коэффициентов: " + coefficient +
+                ",\nМатериалы и данные: " + material;
     }
 }

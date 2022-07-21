@@ -13,18 +13,14 @@ public class ChoiceBoxCalculateHeatingElementControllerService {
         choiceBoxListPilotBatchCalculateTen.add("Опытная партия");
         choiceBoxListPilotBatchCalculateTen.add("Основное производство");
         choiceBoxListPilotBatchCalculateTen.add("Мелко-серийное производсто");
-        ObservableList<String> listPilotBatchCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListPilotBatchCalculateTen);
-        return listPilotBatchCalculateTen;
+        return FXCollections.observableArrayList(choiceBoxListPilotBatchCalculateTen);
     }
 
     public static ObservableList<String> getChoiceBoxListSpiralMaterialCalculateTen(){
         List<String> choiceBoxListSpiralMaterialCalculateTen = new ArrayList<>();
         choiceBoxListSpiralMaterialCalculateTen.add("20Х80Н10Т");
         choiceBoxListSpiralMaterialCalculateTen.add("Х23Ю5Т");
-        ObservableList<String> listSpiralMaterialCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListSpiralMaterialCalculateTen);
-        return listSpiralMaterialCalculateTen;
+        return FXCollections.observableArrayList(choiceBoxListSpiralMaterialCalculateTen);
     }
 
     public static ObservableList<String> getChoiceBoxListNumberOfWiresInASpiralCalculateTen(){
@@ -33,36 +29,28 @@ public class ChoiceBoxCalculateHeatingElementControllerService {
         choiceBoxListNumberOfWiresInASpiralCalculateTen.add("Двойная");
         choiceBoxListNumberOfWiresInASpiralCalculateTen.add("Тройная");
         choiceBoxListNumberOfWiresInASpiralCalculateTen.add("Четверная");
-        ObservableList<String> listNumberOfWiresInASpiralCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListNumberOfWiresInASpiralCalculateTen);
-        return listNumberOfWiresInASpiralCalculateTen;
+        return FXCollections.observableArrayList(choiceBoxListNumberOfWiresInASpiralCalculateTen);
     }
 
     public static ObservableList<Double> getChoiceBoxListMandrelDiameterCalculateTen(){
         List<Double> choiceBoxListMandrelDiameterCalculateTen = new ArrayList<>();
         choiceBoxListMandrelDiameterCalculateTen.add(2.5);
         choiceBoxListMandrelDiameterCalculateTen.add(3.2);
-        ObservableList<Double> listMandrelDiameterCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListMandrelDiameterCalculateTen);
-        return listMandrelDiameterCalculateTen;
+        return FXCollections.observableArrayList(choiceBoxListMandrelDiameterCalculateTen);
     }
 
     public static ObservableList<String> getChoiceBoxListSandCalculateTen(){
         List<String> choiceBoxListSandCalculateTen = new ArrayList<>();
         choiceBoxListSandCalculateTen.add("Переклаз Богдановичский 2К");
         choiceBoxListSandCalculateTen.add("Переклаз Богдановичский 2М");
-        ObservableList<String> listSandCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListSandCalculateTen);
-        return listSandCalculateTen;
+        return FXCollections.observableArrayList(choiceBoxListSandCalculateTen);
     }
 
     public static ObservableList<Double> getChoiceBoxListPipeBilletDiameterCalculateTen(){
         List<Double> choiceBoxListPipeBilletDiameterCalculateTen = new ArrayList<>();
         choiceBoxListPipeBilletDiameterCalculateTen.add(10.0);
         choiceBoxListPipeBilletDiameterCalculateTen.add(12.0);
-        ObservableList<Double> listPipeBilletDiameterCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListPipeBilletDiameterCalculateTen);
-        return listPipeBilletDiameterCalculateTen;
+        return FXCollections.observableArrayList(choiceBoxListPipeBilletDiameterCalculateTen);
     }
 
     public static ObservableList<Double> getChoiceBoxListPipeThicknessCalculateTen(){
@@ -72,21 +60,17 @@ public class ChoiceBoxCalculateHeatingElementControllerService {
         choiceBoxListPipeThicknessCalculateTen.add(0.6);
         choiceBoxListPipeThicknessCalculateTen.add(0.8);
         choiceBoxListPipeThicknessCalculateTen.add(1.0);
-        ObservableList<Double> listPipeThicknessCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListPipeThicknessCalculateTen);
-        return listPipeThicknessCalculateTen;
+        return FXCollections.observableArrayList(choiceBoxListPipeThicknessCalculateTen);
     }
 
-    public static ObservableList<Integer> getChoiceBoxListTopStudProtrusionCalculateTen(){
-        List<Integer> choiceBoxListTopStudProtrusionCalculateTen = new ArrayList<>();
-        choiceBoxListTopStudProtrusionCalculateTen.add(15);
-        choiceBoxListTopStudProtrusionCalculateTen.add(25);
-        choiceBoxListTopStudProtrusionCalculateTen.add(28);
-        choiceBoxListTopStudProtrusionCalculateTen.add(35);
-        choiceBoxListTopStudProtrusionCalculateTen.add(38);
-        ObservableList<Integer> listTopStudProtrusionCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListTopStudProtrusionCalculateTen);
-        return listTopStudProtrusionCalculateTen;
+    public static ObservableList<Double> getChoiceBoxListTopStudProtrusionCalculateTen(){
+        List<Double> choiceBoxListTopStudProtrusionCalculateTen = new ArrayList<>();
+        choiceBoxListTopStudProtrusionCalculateTen.add(15.0);
+        choiceBoxListTopStudProtrusionCalculateTen.add(25.0);
+        choiceBoxListTopStudProtrusionCalculateTen.add(28.0);
+        choiceBoxListTopStudProtrusionCalculateTen.add(35.0);
+        choiceBoxListTopStudProtrusionCalculateTen.add(38.0);
+        return FXCollections.observableArrayList(choiceBoxListTopStudProtrusionCalculateTen);
     }
 
     public static ObservableList<Double> getChoiceBoxListBottomStudProtrusionCalculateTen(){
@@ -94,9 +78,7 @@ public class ChoiceBoxCalculateHeatingElementControllerService {
         choiceBoxListBottomStudProtrusionCalculateTen.add(10.0);
         choiceBoxListBottomStudProtrusionCalculateTen.add(20.0);
         choiceBoxListBottomStudProtrusionCalculateTen.add(30.0);
-        ObservableList<Double> listBottomStudProtrusionCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListBottomStudProtrusionCalculateTen);
-        return listBottomStudProtrusionCalculateTen;
+        return FXCollections.observableArrayList(choiceBoxListBottomStudProtrusionCalculateTen);
     }
 
     public static ObservableList<String> getChoiceBoxListTopStudContactTypeCalculateTen(){
@@ -105,9 +87,7 @@ public class ChoiceBoxCalculateHeatingElementControllerService {
         choiceBoxListTopStudContactTypeCalculateTen.add("Верх 2.0/М3/    /М3");
         choiceBoxListTopStudContactTypeCalculateTen.add("Верх 2.0/М4/    /М3");
         choiceBoxListTopStudContactTypeCalculateTen.add("Верх 2.0/М4/    /М4");
-        ObservableList<String> listTopStudContactTypeCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListTopStudContactTypeCalculateTen);
-        return listTopStudContactTypeCalculateTen;
+        return FXCollections.observableArrayList(choiceBoxListTopStudContactTypeCalculateTen);
     }
 
     public static ObservableList<String> getChoiceBoxListBottomStudContactTypeCalculateTen(){
@@ -117,26 +97,20 @@ public class ChoiceBoxCalculateHeatingElementControllerService {
         choiceBoxListBottomStudContactTypeCalculateTen.add("Низ М3/    /М3");
         choiceBoxListBottomStudContactTypeCalculateTen.add("Низ М4/    /М3");
         choiceBoxListBottomStudContactTypeCalculateTen.add("Низ М4/    /М4");
-        ObservableList<String> listBottomStudContactTypeCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListBottomStudContactTypeCalculateTen);
-        return listBottomStudContactTypeCalculateTen;
+        return FXCollections.observableArrayList(choiceBoxListBottomStudContactTypeCalculateTen);
     }
 
     public static ObservableList<String> getChoiceBoxListSpiralFiringCalculateTen(){
         List<String> choiceBoxListSpiralFiringCalculateTen = new ArrayList<>();
         choiceBoxListSpiralFiringCalculateTen.add("Да");
         choiceBoxListSpiralFiringCalculateTen.add("Нет");
-        ObservableList<String> listSpiralFiringCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListSpiralFiringCalculateTen);
-        return listSpiralFiringCalculateTen;
+        return FXCollections.observableArrayList(choiceBoxListSpiralFiringCalculateTen);
     }
 
     public static ObservableList<String> getChoiceBoxListGostCalculateTen(){
         List<String> choiceBoxListGostCalculateTen = new ArrayList<>();
         choiceBoxListGostCalculateTen.add("ГОСТ-13286-83");
         choiceBoxListGostCalculateTen.add("ГОСТ-13286-81");
-        ObservableList<String> listGostCalculateTen =
-                FXCollections.observableArrayList(choiceBoxListGostCalculateTen);
-        return listGostCalculateTen;
+        return FXCollections.observableArrayList(choiceBoxListGostCalculateTen);
     }
 }
