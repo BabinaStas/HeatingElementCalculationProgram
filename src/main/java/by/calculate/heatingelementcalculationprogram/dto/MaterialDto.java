@@ -1,8 +1,6 @@
-package by.calculate.heatingelementcalculationprogram.domain.initialdatachild;
+package by.calculate.heatingelementcalculationprogram.dto;
 
-import java.io.Serializable;
-
-public class Material implements Serializable {
+public class MaterialDto {
 
     private Integer id;
     private String spiralMaterialSpiral;
@@ -18,30 +16,13 @@ public class Material implements Serializable {
     private String spiralFiring;
     private String gost;
 
-    public Material() {
+    public MaterialDto() {
     }
 
-    public Material(String spiralMaterialSpiral, String numberOfWiresInASpiral, Double mandrelDiameter, String sand,
-                    Double pipeBilletDiameter, Double pipeThickness, Double topStudProtrusion, Double bottomStudProtrusion,
-                    String topStudContactType, String bottomStudContactType, String spiralFiring, String gost) {
-        this.spiralMaterialSpiral = spiralMaterialSpiral;
-        this.numberOfWiresInASpiral = numberOfWiresInASpiral;
-        this.mandrelDiameter = mandrelDiameter;
-        this.sand = sand;
-        this.pipeBilletDiameter = pipeBilletDiameter;
-        this.pipeThickness = pipeThickness;
-        this.topStudProtrusion = topStudProtrusion;
-        this.bottomStudProtrusion = bottomStudProtrusion;
-        this.topStudContactType = topStudContactType;
-        this.bottomStudContactType = bottomStudContactType;
-        this.spiralFiring = spiralFiring;
-        this.gost = gost;
-    }
-
-    public Material(Integer id, String spiralMaterialSpiral, String numberOfWiresInASpiral, Double mandrelDiameter,
-                    String sand, Double pipeBilletDiameter, Double pipeThickness, Double topStudProtrusion,
-                    Double bottomStudProtrusion, String topStudContactType, String bottomStudContactType, String spiralFiring,
-                    String gost) {
+    public MaterialDto(Integer id, String spiralMaterialSpiral, String numberOfWiresInASpiral, Double mandrelDiameter,
+                       String sand, Double pipeBilletDiameter, Double pipeThickness, Double topStudProtrusion,
+                       Double bottomStudProtrusion, String topStudContactType, String bottomStudContactType,
+                       String spiralFiring, String gost) {
         this.id = id;
         this.spiralMaterialSpiral = spiralMaterialSpiral;
         this.numberOfWiresInASpiral = numberOfWiresInASpiral;
@@ -159,22 +140,5 @@ public class Material implements Serializable {
 
     public void setGost(String gost) {
         this.gost = gost;
-    }
-
-    @Override
-    public String toString() {
-        return "\nМатериалы: " +
-                "\nМатериал спирали: " + spiralMaterialSpiral + '\'' +
-                ",\nПризнак количества проволок в спирали: " + numberOfWiresInASpiral + '\'' +
-                ",\nДиаметр оправки: " + mandrelDiameter +
-                ",\nНасыпной материал:" + sand + '\'' +
-                ",\nДиаметр заготовки трубы: " + pipeBilletDiameter +
-                ",\nТолщена трубы: " + pipeThickness +
-                ",\nВылет верхней шпильки: " + topStudProtrusion +
-                ",\nВылет нижней шпильки: " + bottomStudProtrusion +
-                ",\nТип контакта верхней шпильки: " + topStudContactType +
-                ",\nТип контакта нижней шпильки: " + bottomStudContactType +
-                ",\nОбжиг спирали: " + spiralFiring + '\'' +
-                ",\nГОСТ: " + gost + '\'';
     }
 }

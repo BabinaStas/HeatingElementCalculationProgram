@@ -92,6 +92,20 @@ public class DataBaseDesignationController {
     }
 
     @FXML
+    protected void onUpdate(ActionEvent event) throws IOException {
+/*        int row = dataBaseTableDatabase.getSelectionModel().getFocusedIndex();
+        DesignationDto selectDesignationDto = dataBaseTableDatabase.getItems().get(row);
+        designationService.updateById(selectDesignationDto.getId(), selectDesignationDto);*/
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("calculateHeatingElement.fxml"));
+        stage.setScene(new Scene(loader.load()));
+        stage.setTitle("Enter to calculate heating element ");
+        stage.initModality(WINDOW_MODAL);
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
+    @FXML
     private void onCalculateHeatingElementControllerShow(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("calculateHeatingElement.fxml"));
@@ -112,9 +126,4 @@ public class DataBaseDesignationController {
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
     }
-
-/*    @FXML
-    protected void onTransferDesignation(Designation newDesignation) {
-        dataBaseTableDatabase.getItems().add(newDesignation);
-    }*/
 }

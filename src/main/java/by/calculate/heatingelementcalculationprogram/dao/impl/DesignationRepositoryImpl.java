@@ -38,7 +38,22 @@ public class DesignationRepositoryImpl implements DesignationRepository {
 
     @Override
     public void updateById(Integer id, DesignationDto designationDto) {
+        Connection connection = new ConnectDao().getConnection();
+        String sqlCommand = "insert into designation (id, length_ten, stud_length_ten, diameter_ten, power_ten, " +
+                "workspace_ten, voltage_ten) values (?, ?, ?, ?, ?, ?, ?);";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCommand)) {
+            preparedStatement.setDouble(1, designationDto.getLengthTen());
+            preparedStatement.setDouble(2, designationDto.getLengthTen());
+            preparedStatement.setDouble(3, designationDto.getStudLengthTen());
+            preparedStatement.setDouble(4, designationDto.getDiameterTen());
+            preparedStatement.setDouble(5, designationDto.getPowerTen());
+            preparedStatement.setString(6, designationDto.getWorkspaceTen());
+            preparedStatement.setDouble(7, designationDto.getVoltageTen());
 
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

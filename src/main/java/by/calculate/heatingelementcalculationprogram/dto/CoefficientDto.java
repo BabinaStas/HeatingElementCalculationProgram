@@ -1,27 +1,18 @@
-package by.calculate.heatingelementcalculationprogram.domain.initialdatachild;
+package by.calculate.heatingelementcalculationprogram.dto;
 
-import java.io.Serializable;
+public class CoefficientDto {
 
-public class Coefficient implements Serializable {
-
-    private Integer id;
+    private  Integer id;
     private Double spiralReductionFactorTen;
     private Double pipeElongationFactorTen;
     private Double diameterSpiral;
     private Double temperatureSpiral;
 
-    public Coefficient() {
+    public CoefficientDto() {
     }
 
-    public Coefficient(Double spiralReductionFactorTen, Double pipeElongationFactorTen, Double diameterSpiral, Double temperatureSpiral) {
-        this.spiralReductionFactorTen = spiralReductionFactorTen;
-        this.pipeElongationFactorTen = pipeElongationFactorTen;
-        this.diameterSpiral = diameterSpiral;
-        this.temperatureSpiral = temperatureSpiral;
-    }
-
-    public Coefficient(Integer id, Double spiralReductionFactorTen, Double pipeElongationFactorTen, Double diameterSpiral,
-                       Double temperatureSpiral) {
+    public CoefficientDto(Integer id, Double spiralReductionFactorTen, Double pipeElongationFactorTen,
+                          Double diameterSpiral, Double temperatureSpiral) {
         this.id = id;
         this.spiralReductionFactorTen = spiralReductionFactorTen;
         this.pipeElongationFactorTen = pipeElongationFactorTen;
@@ -67,14 +58,5 @@ public class Coefficient implements Serializable {
 
     public void setTemperatureSpiral(Double temperatureSpiral) {
         this.temperatureSpiral = temperatureSpiral;
-    }
-
-    @Override
-    public String toString() {
-        return "\nКоэффициенты:" +
-                "\nКоэффициент приведения спирали: " + spiralReductionFactorTen +
-                ",\nКоэффициент удлиннения трубы: " + pipeElongationFactorTen +
-                ",\nДиаметр спирали: " + diameterSpiral +
-                ",\nТемпература на сприли: " + temperatureSpiral;
     }
 }

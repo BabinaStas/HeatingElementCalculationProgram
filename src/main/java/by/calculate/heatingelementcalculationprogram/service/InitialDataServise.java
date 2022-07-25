@@ -8,7 +8,7 @@ public class InitialDataServise {
 
     public static void saveDesignation(InitialData initialData) {
 
-        File fileInitialData = new File("resource\\initialData.dat");
+        File fileInitialData = new File("resource\\InitialData.dat");
 
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(fileInitialData));
              ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileInitialData))) {
@@ -20,7 +20,7 @@ public class InitialDataServise {
         }
     }
     public static void writeText(InitialData initialData) {
-        String dest = "resource\\Designation.txt";
+        String dest = "resource\\InitialData.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(dest), 4)) {
             writer.write(initialData.toString());
         } catch (IOException e) {

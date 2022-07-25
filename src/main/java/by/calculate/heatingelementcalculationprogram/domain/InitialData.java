@@ -77,7 +77,7 @@ public class InitialData implements Serializable {
     public String toString() {
         return "Расчет ТЭНа : " +
                 "\nОбозначение: " + designation +
-                ",\nБлок Заказчика: " + customer +
+                ",\nБлок заказчика: " + customer +
                 ",\nБлок коэффициентов: " + coefficient +
                 ",\nМатериалы и данные: " + material;
     }
