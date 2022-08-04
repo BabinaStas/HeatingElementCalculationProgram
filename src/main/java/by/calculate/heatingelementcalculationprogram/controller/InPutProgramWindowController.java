@@ -14,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Optional;
 
 import static javafx.stage.Modality.WINDOW_MODAL;
 
@@ -40,20 +42,19 @@ public class InPutProgramWindowController {
 
     @FXML
     private void inPutButton(ActionEvent event) throws IOException {
-        boolean isFind = false;
+
         User person = new User(loginTextFieldProgramWindow.getText(), passwordTextFieldProgramWindow.getText());
-        for (User user : users)
-            if (user.equals(person)) {
-                isFind = true;
-                onTableWindowShow(event);
-                break;
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Ошибка инициализации.");
-                alert.setHeaderText("Логин или пароль введен неверно. ");
-                alert.showAndWait();
-                break;
-            }
+        Optional<User> findUser = Arrays.stream(users)
+                .filter(user -> user.equals(person))
+                .findAny();
+        if (findUser.isPresent()) {
+            onTableWindowShow(event);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ошибка инициализации.");
+            alert.setHeaderText("Логин или пароль введен неверно. ");
+            alert.showAndWait();
+        }
     }
 
     private void onTableWindowShow(ActionEvent event) throws IOException {

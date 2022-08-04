@@ -8,6 +8,7 @@ import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Des
 import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Material;
 import by.calculate.heatingelementcalculationprogram.service.CalculateHeatingController.AlertCalculateHeatingElementService;
 import by.calculate.heatingelementcalculationprogram.service.CalculateHeatingController.ChoiceBoxCalculateHeatingElementControllerService;
+import by.calculate.heatingelementcalculationprogram.service.DesignationService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -172,7 +173,20 @@ public class CalculateHeatingElementController {
     private TextField workspaceCalculateTen;
 
     @FXML
+    private Button updateDataBaseCalculationCalculateTen;
+
+    private Designation designation;
+
+    private Integer idDesignation;
+
+/*    private boolean isUpdateButtonVisible;*/
+
+    DesignationService designationService = new DesignationService();
+
+    @FXML
     private void initialize() {
+        updateDataBaseCalculationCalculateTen.setVisible(false);
+
         pilotBatchCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
                 getChoiceBoxListPilotBatchCalculateTen());
         pilotBatchCalculateTen.setValue("Опытная партия");
@@ -223,7 +237,9 @@ public class CalculateHeatingElementController {
         gostCalculateTen.setItems(ChoiceBoxCalculateHeatingElementControllerService.
                 getChoiceBoxListGostCalculateTen());
         gostCalculateTen.setValue("ГОСТ-13286-83");
-    }
+        }
+
+
 
         private String[][] arrayOfDesignationOfThermalElectricHeater() {
         String[][] array = new String[6][2];
@@ -240,6 +256,22 @@ public class CalculateHeatingElementController {
         array[5][0] = voltageCalculateTen.getPromptText();
         array[5][1] = voltageCalculateTen.getText();
         return array;
+    }
+
+
+    @FXML
+    protected void onTransferData(Designation designation) {
+
+        this.designation = designation;
+        this.idDesignation = designation.getId();
+        lengthTenCalculateTen.setText(designation.getLengthTen().toString());
+        studLengthCalculateTen.setText(designation.getStudLengthTen().toString());
+        diameterTenCalculateTen.setText(designation.getDiameterTen().toString());
+        powerTenCalculateTen.setText(designation.getPowerTen().toString());
+        workspaceCalculateTen.setText(designation.getWorkspaceTen());
+        voltageCalculateTen.setText(designation.getVoltageTen().toString());
+
+        updateDataBaseCalculationCalculateTen.setVisible(true);
     }
 
     private String[][] arrayOfInitialData() {
@@ -332,6 +364,34 @@ public class CalculateHeatingElementController {
     }
 
     @FXML
+    protected void onUpdateCalculateHeatingElementControllerShow(ActionEvent event) throws IOException {
+        if (AlertCalculateHeatingElementService.fillingWindow(arrayOfInitialData()).equals(" ")) {
+            designationService.updateById(21,getUpdateDesignation());
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("dataBaseDesignation.fxml"));
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Data base table");
+            stage.initModality(WINDOW_MODAL);
+            stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+            stage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Незаполнены все поля исходных данных.");
+            alert.setHeaderText("Заполните следующие поля: " + AlertCalculateHeatingElementService.fillingWindow(arrayOfInitialData()) +
+            AlertCalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()));
+            alert.showAndWait();
+        }
+
+    }
+
+    private Designation getUpdateDesignation(){
+        return new Designation(designation.getId(), Double.parseDouble(lengthTenCalculateTen.getText()),
+                Double.parseDouble(studLengthCalculateTen.getText()), Double.parseDouble(diameterTenCalculateTen.getText()),
+                Double.parseDouble(powerTenCalculateTen.getText()), workspaceCalculateTen.getText(),
+                Double.parseDouble(voltageCalculateTen.getText()));
+    }
+
+    @FXML
     protected void onFormedCalculateHeatingElementControllerShow(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.
@@ -367,7 +427,6 @@ public class CalculateHeatingElementController {
             alert.setHeaderText("Заполните следующие поля: " + AlertCalculateHeatingElementService.fillingWindow(arrayOfInitialData()) +
             AlertCalculateHeatingElementService.fillingWindow(arrayOfDesignationOfThermalElectricHeater()));
             alert.showAndWait();
-
         }
     }
 }

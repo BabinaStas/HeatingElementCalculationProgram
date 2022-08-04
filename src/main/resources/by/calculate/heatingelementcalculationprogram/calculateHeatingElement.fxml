@@ -12,7 +12,24 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.calculate.heatingelementcalculationprogram.controller.CalculateHeatingElementController">
    <children>
-      <AnchorPane layoutY="140.0" prefHeight="560.0" prefWidth="900.0" style="-fx-background-color: fafafa;" />
+      <AnchorPane layoutY="140.0" prefHeight="560.0" prefWidth="900.0" style="-fx-background-color: fafafa;">
+         <children>
+            <Button fx:id="updateDataBaseCalculationCalculateTen" layoutX="235.0" layoutY="494.0" mnemonicParsing="false" onAction="#onUpdateCalculateHeatingElementControllerShow" text="Изменить расчет">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="generateCalculationCalculateTen" layoutX="39.0" layoutY="494.0" mnemonicParsing="false" onAction="#onFormedCalculateHeatingElementControllerShow" text="Сформировать расчет">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="searchDateBaseCalculateTen" layoutX="715.0" layoutY="494.0" mnemonicParsing="false" onAction="#onDataBaseControllerShow" text="Поиск по Базе">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
       <Label layoutX="349.0" layoutY="23.0" text="Обозначение ТЭН">
          <font>
             <Font name="icomoon" size="24.0" />
@@ -261,16 +278,6 @@
             <ChoiceBox fx:id="gostCalculateTen" prefHeight="25.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
          </children>
       </GridPane>
-      <Button fx:id="generateCalculationCalculateTen" layoutX="148.0" layoutY="630.0" mnemonicParsing="false" onAction="#onFormedCalculateHeatingElementControllerShow" text="Сформировать расчет">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button fx:id="searchDateBaseCalculateTen" layoutX="577.0" layoutY="630.0" mnemonicParsing="false" onAction="#onDataBaseControllerShow" text="Поиск по Базе">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
       <Button fx:id="changeUserCalculateTen" layoutX="700.0" layoutY="18.0" mnemonicParsing="false" onAction="#onInPutProgramWindowShow" text="Сменить пользователя">
          <font>
             <Font size="16.0" />

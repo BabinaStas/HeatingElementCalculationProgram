@@ -1,6 +1,9 @@
 package by.calculate.heatingelementcalculationprogram.service;
 
 import by.calculate.heatingelementcalculationprogram.domain.InitialData;
+import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Designation;
+
+import java.util.Optional;
 
 public class MethodsElectroPhysicalCalculation {
 
@@ -11,7 +14,11 @@ public class MethodsElectroPhysicalCalculation {
 
     /*Удельная нагрузка на проволку*/
     public static Double getSpecificLoadOnTheWire(InitialData LoadWire){
-        return LoadWire.getDesignation().getPowerTen() / getLongActivePart(LoadWire);
+        return Optional.ofNullable(LoadWire)
+                    .map(InitialData::getDesignation)
+                    .map(Designation::getPowerTen)
+                    .map(powerTen -> powerTen / getLongActivePart(LoadWire))
+                    .orElse(0.0);
     }
 
     /*Длинна шпильки*/

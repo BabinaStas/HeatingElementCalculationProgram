@@ -22,7 +22,6 @@ import static javafx.stage.Modality.WINDOW_MODAL;
 
 public class DataBaseDesignationController {
 
-
     private ObservableList<InitialData> initialData = FXCollections.observableArrayList();
 
     @FXML
@@ -55,7 +54,13 @@ public class DataBaseDesignationController {
     @FXML
     private Button generateCalculationDatabase;
 
+    @FXML
+    private Button searchDataBase;
+
     DesignationService designationService = new DesignationService();
+
+    @FXML
+    private ActionEvent event;
 
     @FXML
     private void initialize() {
@@ -93,15 +98,17 @@ public class DataBaseDesignationController {
 
     @FXML
     protected void onUpdate(ActionEvent event) throws IOException {
-/*        int row = dataBaseTableDatabase.getSelectionModel().getFocusedIndex();
-        DesignationDto selectDesignationDto = dataBaseTableDatabase.getItems().get(row);
-        designationService.updateById(selectDesignationDto.getId(), selectDesignationDto);*/
+        this.event = event;
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("calculateHeatingElement.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("Enter to calculate heating element ");
         stage.initModality(WINDOW_MODAL);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        CalculateHeatingElementController calculateHeatingElementController = loader.getController();
+        int row = dataBaseTableDatabase.getSelectionModel().getFocusedIndex();
+        Designation upDateDesignation = dataBaseTableDatabase.getItems().get(row);
+        calculateHeatingElementController.onTransferData(upDateDesignation);
         stage.show();
     }
 
@@ -122,6 +129,21 @@ public class DataBaseDesignationController {
         FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("formedCalculateHeatingElement.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("Enter to formed calculate heating element ");
+        stage.initModality(WINDOW_MODAL);
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        FormedCalculateHeatingElementController formedCalculateHeatingElementController = loader.getController();
+        int row = dataBaseTableDatabase.getSelectionModel().getFocusedIndex();
+        Designation designation = dataBaseTableDatabase.getItems().get(row);
+        formedCalculateHeatingElementController.onPopulateDesignation(designation);
+        stage.show();
+    }
+
+    @FXML
+    private void onSearchControllerShow(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("searchDataBase.fxml"));
+        stage.setScene(new Scene(loader.load()));
+        stage.setTitle("Search ");
         stage.initModality(WINDOW_MODAL);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();

@@ -26,8 +26,9 @@ public class DesignationService {
         designationRepository.insertOne(designationDto);
     }
 
-    public void updateById(Integer id, DesignationDto designation){
-        designationRepository.updateById(id, designation);
+    public void updateById(Integer id, Designation designation){
+        DesignationDto designationDto = DesignationMapper.toDesignationDto(designation);
+        designationRepository.updateById(id, designationDto);
     }
 
 

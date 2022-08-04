@@ -7,8 +7,6 @@ public class AlertCalculateHeatingElementService {
         for (int i = 0; i < array.length; i++) {
             if (array[i][1] == "") {
                 result += array[i][0] + " ";
-/*            } else if (result == "Заполните следующие поля: ") {
-                result = "";*/
             }
         } return result;
     }

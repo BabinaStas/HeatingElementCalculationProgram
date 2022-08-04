@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.calculate.heatingelementcalculationprogram.dao.HelperDao.populateDesignation;
 import static by.calculate.heatingelementcalculationprogram.dao.HelperDao.populateMaterial;
 
 public class MaterialRepositoryImpl implements MaterialRepository {
@@ -34,7 +33,7 @@ public class MaterialRepositoryImpl implements MaterialRepository {
     }
 
     @Override
-    public MaterialDto getOneById(Integer id) {
+    public MaterialDto getOneById(MaterialDto materialDto) {
         return null;
     }
 

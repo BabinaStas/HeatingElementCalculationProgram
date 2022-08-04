@@ -2,6 +2,7 @@ package by.calculate.heatingelementcalculationprogram.dao.impl;
 
 import by.calculate.heatingelementcalculationprogram.dao.CoefficientRepository;
 import by.calculate.heatingelementcalculationprogram.dao.ConnectDao;
+import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Coefficient;
 import by.calculate.heatingelementcalculationprogram.dto.CoefficientDto;
 
 import java.sql.Connection;
@@ -31,7 +32,7 @@ public class CoefficientRepositoryImpl implements CoefficientRepository {
     }
 
     @Override
-    public CoefficientDto getOneById(Integer id) {
+    public CoefficientDto getOneById(CoefficientDto coefficientDto) {
         return null;
     }
 

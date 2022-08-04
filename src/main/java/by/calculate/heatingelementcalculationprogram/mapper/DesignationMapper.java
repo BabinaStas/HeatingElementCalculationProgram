@@ -30,6 +30,7 @@ public class DesignationMapper {
 
     public static DesignationDto toDesignationDto(Designation designation){
         DesignationDto result = new DesignationDto();
+        result.setId(designation.getId());
         result.setLengthTen(designation.getLengthTen());
         result.setStudLengthTen(designation.getStudLengthTen());
         result.setDiameterTen(designation.getDiameterTen());

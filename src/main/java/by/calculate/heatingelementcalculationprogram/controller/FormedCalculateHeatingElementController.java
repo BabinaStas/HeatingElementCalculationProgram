@@ -247,7 +247,6 @@ public class FormedCalculateHeatingElementController {
         stage.setTitle("Enter to data base ");
         stage.initModality(WINDOW_MODAL);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-
         stage.show();
     }
 

@@ -32,7 +32,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         }
 
     @Override
-    public CustomerDto getOneById(Integer id) {
+    public CustomerDto getOneById(CustomerDto customerDto) {
         return null;
     }
 

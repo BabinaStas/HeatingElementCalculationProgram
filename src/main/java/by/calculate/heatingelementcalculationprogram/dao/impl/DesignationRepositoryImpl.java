@@ -32,23 +32,35 @@ public class DesignationRepositoryImpl implements DesignationRepository {
     }
 
     @Override
-    public DesignationDto getOneById(Integer id) {
+    public DesignationDto getOneById(DesignationDto designationDto) {
+/*        Connection connection = new ConnectDao().getConnection();
+        String sqlCommand = "select * from designation where length_ten = ?, where stud_length_ten = ;";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCommand)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null && resultSet.next()) {
+                return populateBorrower(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
         return null;
     }
+
 
     @Override
     public void updateById(Integer id, DesignationDto designationDto) {
         Connection connection = new ConnectDao().getConnection();
-        String sqlCommand = "insert into designation (id, length_ten, stud_length_ten, diameter_ten, power_ten, " +
-                "workspace_ten, voltage_ten) values (?, ?, ?, ?, ?, ?, ?);";
+        String sqlCommand = "update designation set length_ten = ?, stud_length_ten = ?, diameter_ten = ?, power_ten = ?, workspace_ten = ?, " +
+                "voltage_ten = ? where id = ?;";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCommand)) {
             preparedStatement.setDouble(1, designationDto.getLengthTen());
-            preparedStatement.setDouble(2, designationDto.getLengthTen());
-            preparedStatement.setDouble(3, designationDto.getStudLengthTen());
-            preparedStatement.setDouble(4, designationDto.getDiameterTen());
-            preparedStatement.setDouble(5, designationDto.getPowerTen());
-            preparedStatement.setString(6, designationDto.getWorkspaceTen());
-            preparedStatement.setDouble(7, designationDto.getVoltageTen());
+            preparedStatement.setDouble(2, designationDto.getStudLengthTen());
+            preparedStatement.setDouble(3, designationDto.getDiameterTen());
+            preparedStatement.setDouble(4, designationDto.getPowerTen());
+            preparedStatement.setString(5, designationDto.getWorkspaceTen());
+            preparedStatement.setDouble(6, designationDto.getVoltageTen());
+            preparedStatement.setInt(7, designationDto.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -72,7 +84,8 @@ public class DesignationRepositoryImpl implements DesignationRepository {
     @Override
     public void insertOne(DesignationDto designationDto) {
         Connection connection = new ConnectDao().getConnection();
-        String sqlCommand = "insert into designation (length_ten, stud_length_ten, diameter_ten, power_ten, workspace_ten, voltage_ten) values (?, ?, ?, ?, ?, ?);";
+        String sqlCommand = "insert into designation (length_ten, stud_length_ten, diameter_ten, power_ten, workspace_ten, " +
+                "voltage_ten) values (?, ?, ?, ?, ?, ?);";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCommand);) {
             preparedStatement.setDouble(1, designationDto.getLengthTen());
             preparedStatement.setDouble(2, designationDto.getStudLengthTen());
