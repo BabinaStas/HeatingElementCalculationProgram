@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -11,7 +13,7 @@
    <children>
       <AnchorPane layoutY="53.0" prefHeight="648.0" prefWidth="650.0" style="-fx-background-color: fafafa;">
          <children>
-            <TableView fx:id="dataBaseTableDatabase" prefHeight="553.0" prefWidth="650.0">
+            <TableView fx:id="dataBaseTableDataBase" prefHeight="542.0" prefWidth="650.0">
                <columns>
                   <TableColumn fx:id="lengthTen" prefWidth="120.0" text="Длинна" />
                   <TableColumn fx:id="studLengthTen" minWidth="0.0" text="Заделка" />
@@ -21,37 +23,39 @@
                   <TableColumn fx:id="voltageTen" prefWidth="150.0" text="Напряжение" />
                </columns>
             </TableView>
-            <Button fx:id="onDeleteControllerDataBase" layoutX="14.0" layoutY="582.0" mnemonicParsing="false" onAction="#onRemoveRow" text="Удалить расчет">
+            <Button fx:id="onDeleteControllerDataBase" layoutX="8.0" layoutY="582.0" mnemonicParsing="false" onAction="#onRemoveRow" text="Удалить расчет">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="generateCalculationDatabase" layoutX="407.0" layoutY="582.0" mnemonicParsing="false" onAction="#onFormedCalculateHeatingElementControllerShow" text="Сформировать расчет">
+            <Button fx:id="generateCalculationDatabase" layoutX="308.0" layoutY="582.0" mnemonicParsing="false" onAction="#onFormedCalculateHeatingElementControllerShow" text="Сформировать расчет">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="onChangeControllerDataBase" layoutX="159.0" layoutY="582.0" mnemonicParsing="false" onAction="#onUpdate" text="Изменить расчет">
+            <Button fx:id="onChangeControllerDataBase" layoutX="149.0" layoutY="582.0" mnemonicParsing="false" onAction="#onUpdate" text="Изменить расчет">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="searchDataBase" layoutX="326.0" layoutY="582.0" onAction="#onSearchControllerShow" mnemonicParsing="false"  text="Поиск">
+            <Button fx:id="backToCalculateDataBase" layoutX="500.0" layoutY="582.0" mnemonicParsing="false" onAction="#onCalculateHeatingElementControllerShow" text="Назад в начало">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <Label layoutX="281.0" layoutY="14.0" text="База">
+      <Label layoutX="36.0" layoutY="14.0" text="База">
          <font>
             <Font name="icomoon" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="backToCalculateDataBase" layoutX="472.0" layoutY="9.0" mnemonicParsing="false" onAction="#onCalculateHeatingElementControllerShow" text="Вернуться в начало">
+      <Button fx:id="searchDataBase" onAction="#onGetDataFilter" layoutX="568.0" layoutY="9.0" mnemonicParsing="false"  text="Поиск">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
+      <ChoiceBox fx:id="searchOfDesignation" layoutX="250.0" layoutY="14.0" prefWidth="150.0" />
+      <TextField fx:id="searchTextFieldDataBase" layoutX="408.0" layoutY="14.0" />
    </children>
 </AnchorPane>

@@ -12,7 +12,7 @@
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="900.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="43.0" prefHeight="30.0" prefWidth="813.0" text="Physical and mathematical calculation heating element" wrapText="true">
+            <Label alignment="CENTER" layoutX="14.0" layoutY="43.0" prefHeight="30.0" prefWidth="813.0" text="Физико-математический расчет ТЭНа" wrapText="true">
                <font>
                   <Font name="icomoon" size="30.0" />
                </font>
@@ -22,7 +22,7 @@
                   <Font size="24.0" />
                </font>
             </PasswordField>
-            <Button fx:id="inputButtonProgramWindow" layoutX="377.0" layoutY="269.0" mnemonicParsing="false" onAction="#inPutButton" text="Input">
+            <Button fx:id="inputButtonProgramWindow" layoutX="377.0" layoutY="269.0" mnemonicParsing="false" onAction="#inPutButton" text="Вход">
                <font>
                   <Font size="20.0" />
                </font>

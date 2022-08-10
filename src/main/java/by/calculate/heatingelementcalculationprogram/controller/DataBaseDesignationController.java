@@ -3,6 +3,8 @@ package by.calculate.heatingelementcalculationprogram.controller;
 import by.calculate.heatingelementcalculationprogram.InPutProgramWindowApplication;
 import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Designation;
 import by.calculate.heatingelementcalculationprogram.domain.InitialData;
+import by.calculate.heatingelementcalculationprogram.service.DatabaseDesigantionController.AlertDataBaseService;
+import by.calculate.heatingelementcalculationprogram.service.DatabaseDesigantionController.ChoiceBoxDataBaseDesignationController;
 import by.calculate.heatingelementcalculationprogram.service.DesignationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +19,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static javafx.stage.Modality.WINDOW_MODAL;
 
@@ -31,7 +36,7 @@ public class DataBaseDesignationController {
     private Button backToCalculateDataBase;
 
     @FXML
-    private TableView<Designation> dataBaseTableDatabase;
+    private TableView<Designation> dataBaseTableDataBase;
 
     @FXML
     private TableColumn<Designation, Double> lengthTen;
@@ -55,12 +60,19 @@ public class DataBaseDesignationController {
     private Button generateCalculationDatabase;
 
     @FXML
+    private ChoiceBox<String> searchOfDesignation;
+
+    @FXML
     private Button searchDataBase;
 
-    DesignationService designationService = new DesignationService();
+    @FXML
+    private TextField searchTextFieldDataBase;
 
     @FXML
     private ActionEvent event;
+
+    DesignationService designationService = new DesignationService();
+
 
     @FXML
     private void initialize() {
@@ -85,15 +97,21 @@ public class DataBaseDesignationController {
         ObservableList<Designation> designations = FXCollections.observableArrayList();
 
         designations.addAll(designationService.getDesignations());
-        dataBaseTableDatabase.setItems(designations);
+        dataBaseTableDataBase.setItems(designations);
+        searchOfDesignation.setItems(ChoiceBoxDataBaseDesignationController.getChoiceBoxListSearch());
     }
 
     @FXML
     protected void onRemoveRow() {
-        int row = dataBaseTableDatabase.getSelectionModel().getFocusedIndex();
-        Designation selectDesignation = dataBaseTableDatabase.getItems().get(row);
-        dataBaseTableDatabase.getItems().remove(selectDesignation);
-        designationService.deleteById(selectDesignation.getId());
+        int row = dataBaseTableDataBase.getSelectionModel().getFocusedIndex();
+        boolean isGetField = dataBaseTableDataBase.getSelectionModel().isSelected(0);
+        if(row == 0 && !isGetField) {
+            AlertDataBaseService.getAlert();
+        } else {
+            Designation selectDesignation = dataBaseTableDataBase.getItems().get(row);
+            dataBaseTableDataBase.getItems().remove(selectDesignation);
+            designationService.deleteById(selectDesignation.getId());
+        }
     }
 
     @FXML
@@ -106,10 +124,15 @@ public class DataBaseDesignationController {
         stage.initModality(WINDOW_MODAL);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         CalculateHeatingElementController calculateHeatingElementController = loader.getController();
-        int row = dataBaseTableDatabase.getSelectionModel().getFocusedIndex();
-        Designation upDateDesignation = dataBaseTableDatabase.getItems().get(row);
-        calculateHeatingElementController.onTransferData(upDateDesignation);
-        stage.show();
+        int row = dataBaseTableDataBase.getSelectionModel().getFocusedIndex();
+        boolean isGetField = dataBaseTableDataBase.getSelectionModel().isSelected(0);
+        if(row == 0 && !isGetField) {
+            AlertDataBaseService.getAlert();
+        } else {
+            Designation upDateDesignation = dataBaseTableDataBase.getItems().get(row);
+            calculateHeatingElementController.onTransferData(upDateDesignation);
+            stage.show();
+        }
     }
 
     @FXML
@@ -132,20 +155,33 @@ public class DataBaseDesignationController {
         stage.initModality(WINDOW_MODAL);
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         FormedCalculateHeatingElementController formedCalculateHeatingElementController = loader.getController();
-        int row = dataBaseTableDatabase.getSelectionModel().getFocusedIndex();
-        Designation designation = dataBaseTableDatabase.getItems().get(row);
-        formedCalculateHeatingElementController.onPopulateDesignation(designation);
-        stage.show();
+        int row = dataBaseTableDataBase.getSelectionModel().getFocusedIndex();
+        boolean isGetField = dataBaseTableDataBase.getSelectionModel().isSelected(0);
+        if(row == 0 && !isGetField) {
+            AlertDataBaseService.getAlert();
+        }else {
+            Designation designation = dataBaseTableDataBase.getItems().get(row);
+            formedCalculateHeatingElementController.onPopulateDesignation(designation);
+            stage.show();
+        }
     }
 
     @FXML
-    private void onSearchControllerShow(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("searchDataBase.fxml"));
-        stage.setScene(new Scene(loader.load()));
-        stage.setTitle("Search ");
-        stage.initModality(WINDOW_MODAL);
-        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-        stage.show();
+    private void onGetDataFilter() {
+        Predicate<Designation> filter = switch (searchOfDesignation.getValue()) {
+            case "Длинна" -> x -> x.getLengthTen() == Double.parseDouble(searchTextFieldDataBase.getText());
+            case "Длинна заделки" -> x -> x.getStudLengthTen() == Double.parseDouble(searchTextFieldDataBase.getText());
+            case "Диаметр" -> x -> x.getDiameterTen() == Double.parseDouble(searchTextFieldDataBase.getText());
+            case "Мощность" -> x -> x.getPowerTen() == Double.parseDouble(searchTextFieldDataBase.getText());
+            case "Среда" -> x -> x.getWorkspaceTen().equals(searchTextFieldDataBase.getText());
+            case "Напряжение" -> x -> x.getVoltageTen() == Double.parseDouble(searchTextFieldDataBase.getText());
+            default -> x -> true;
+        };
+        List<Designation> collect = dataBaseTableDataBase.getItems().stream()
+                .filter(filter)
+                .collect(Collectors.toList());
+        ObservableList<Designation> designations = FXCollections.observableArrayList();
+        designations.addAll(collect);
+        dataBaseTableDataBase.setItems(designations);
     }
 }

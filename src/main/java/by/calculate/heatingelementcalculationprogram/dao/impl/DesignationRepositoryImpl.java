@@ -33,17 +33,6 @@ public class DesignationRepositoryImpl implements DesignationRepository {
 
     @Override
     public DesignationDto getOneById(DesignationDto designationDto) {
-/*        Connection connection = new ConnectDao().getConnection();
-        String sqlCommand = "select * from designation where length_ten = ?, where stud_length_ten = ;";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCommand)) {
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet != null && resultSet.next()) {
-                return populateBorrower(resultSet);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
         return null;
     }
 

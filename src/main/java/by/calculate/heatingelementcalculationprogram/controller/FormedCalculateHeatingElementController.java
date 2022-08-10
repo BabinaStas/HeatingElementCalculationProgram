@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 
 import java.io.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 import static javafx.stage.Modality.WINDOW_MODAL;
 
@@ -181,7 +181,7 @@ public class FormedCalculateHeatingElementController {
         numberOrderFormedCalculateTen.setText(customer.getNumberOrder());
         customerFormedCalculateTen.setText(customer.getCustomer());
         pilotBatchFormedCalculateTen.setText(customer.getPilotBatch());
-        numberOfProductsFormedCalculateTen.setText(customer.getNumberOfProducts());
+        numberOfProductsFormedCalculateTen.setText(customer.getNumberOfProducts().toString());
     }
 
     @FXML
@@ -209,7 +209,7 @@ public class FormedCalculateHeatingElementController {
 
     @FXML
     protected void onTransferData(InitialData initialData) {
-        dateFormedCalculateTen.setText(String.valueOf(new Date()));
+        dateFormedCalculateTen.setText(String.valueOf(LocalDate.now()));
         onPopulateDesignation(initialData.getDesignation());
         onPopulateCustomer(initialData.getCustomer());
         onPopulateCoefficient(initialData.getCoefficient());
@@ -249,7 +249,5 @@ public class FormedCalculateHeatingElementController {
         stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.show();
     }
-
-
 }
 
