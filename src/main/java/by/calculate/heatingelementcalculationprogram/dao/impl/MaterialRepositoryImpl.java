@@ -33,7 +33,7 @@ public class MaterialRepositoryImpl implements MaterialRepository {
     }
 
     @Override
-    public MaterialDto getOneById(MaterialDto materialDto) {
+    public MaterialDto getOneById(Integer id) {
         return null;
     }
 

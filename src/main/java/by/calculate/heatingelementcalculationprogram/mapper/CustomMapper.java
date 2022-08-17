@@ -25,4 +25,14 @@ public class CustomMapper {
         }
         return result;
     }
+
+    public static CustomerDto toCustomerDto(Customer customer){
+        CustomerDto result = new CustomerDto();
+        result.setId(customer.getId());
+        result.setNumberOrder(customer.getNumberOrder());
+        result.setCustomColumn(customer.getCustomer());
+        result.setNumberOfProducts(customer.getNumberOfProducts());
+        result.setPilotBatch(customer.getPilotBatch());
+        return result;
+    }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
          List<T> getAll();
 
-        T getOneById(T entity);
+        T getOneById(Integer id);
 
         void updateById(Integer id, T entity);
 

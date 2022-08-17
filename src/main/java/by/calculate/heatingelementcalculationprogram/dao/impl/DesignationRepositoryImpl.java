@@ -32,7 +32,18 @@ public class DesignationRepositoryImpl implements DesignationRepository {
     }
 
     @Override
-    public DesignationDto getOneById(DesignationDto designationDto) {
+    public DesignationDto getOneById(Integer id) {
+        Connection connection = new ConnectDao().getConnection();
+        String sqlCommand = "select * from designation where id = ?;";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCommand)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet != null && resultSet.next()) {
+                return populateDesignation(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -87,6 +98,5 @@ public class DesignationRepositoryImpl implements DesignationRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

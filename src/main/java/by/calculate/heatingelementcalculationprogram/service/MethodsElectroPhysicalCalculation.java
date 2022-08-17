@@ -13,7 +13,7 @@ public class MethodsElectroPhysicalCalculation {
         return Optional.ofNullable(stubLengthOfAllTen)
                 .map(InitialData::getDesignation)
                 .map(Designation::getStudLengthTen)
-                .map(stubLength -> (stubLength * 0.1) *2)
+                .map(stubLength -> (stubLength * 0.1) * 2)
                 .orElse(0.0);
     }
 
@@ -58,7 +58,7 @@ public class MethodsElectroPhysicalCalculation {
         return Optional.ofNullable(heatingElementResistance)
                 .map(InitialData::getDesignation)
                 .map(Designation::getVoltageTen)
-                .map(voltage -> Math.pow(voltage,2) / getPowerTenInVat(heatingElementResistance))
+                .map(voltage -> Math.round(Math.pow(voltage,2) / getPowerTenInVat(heatingElementResistance)) * 100.0 / 100.0)
                 .orElse(0.0);
     }
 

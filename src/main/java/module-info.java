@@ -10,6 +10,8 @@ module by.calculate.heatingelementcalculationprogram {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.sql;
+    requires org.apache.poi.ooxml;
+    requires java.desktop;
 
     opens by.calculate.heatingelementcalculationprogram to javafx.fxml;
     exports by.calculate.heatingelementcalculationprogram;

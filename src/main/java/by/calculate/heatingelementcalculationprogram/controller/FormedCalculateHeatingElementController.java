@@ -1,12 +1,15 @@
 package by.calculate.heatingelementcalculationprogram.controller;
 
+import java.awt.Desktop;
 import by.calculate.heatingelementcalculationprogram.InPutProgramWindowApplication;
 import by.calculate.heatingelementcalculationprogram.domain.InitialData;
 import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Coefficient;
 import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Customer;
 import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Designation;
 import by.calculate.heatingelementcalculationprogram.domain.initialdatachild.Material;
+import by.calculate.heatingelementcalculationprogram.service.CustomerService;
 import by.calculate.heatingelementcalculationprogram.service.DesignationService;
+import by.calculate.heatingelementcalculationprogram.service.FormedCalculateHeatingElementService.WordService;
 import by.calculate.heatingelementcalculationprogram.service.InitialDataServise;
 import by.calculate.heatingelementcalculationprogram.service.MethodsElectroPhysicalCalculation;
 import by.calculate.heatingelementcalculationprogram.utils.SaveThread;
@@ -22,6 +25,8 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static javafx.stage.Modality.WINDOW_MODAL;
 
@@ -141,33 +146,10 @@ public class FormedCalculateHeatingElementController {
 
     InitialData transferInitialData;
     DesignationService designationService = new DesignationService();
+    CustomerService customerService = new CustomerService();
 
     @FXML
-    private void onCalculateHeatingElementControllerShow(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("calculateHeatingElement.fxml"));
-        stage.setScene(new Scene(loader.load()));
-        stage.setTitle("Enter to calculate heating element ");
-        stage.initModality(WINDOW_MODAL);
-        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-        stage.show();
-    }
-
-    @FXML
-    private void onDataBaseControllerShow(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        SaveThread saveThread = new SaveThread("Save Thread", transferInitialData);
-        saveThread.start();
-        FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("dataBaseDesignation.fxml"));
-        stage.setScene(new Scene(loader.load()));
-        stage.setTitle("Enter to data base ");
-        stage.initModality(WINDOW_MODAL);
-        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-        stage.show();
-    }
-
-    @FXML
-    protected void  onPopulateDesignation(Designation designation) {
+    protected void onPopulateDesignation(Designation designation) {
         lengthTenFormedCalculateTen.setText(designation.getLengthTen().toString());
         studLengthFormedCalculateTen.setText(designation.getStudLengthTen().toString());
         diameterTenFormedCalculateTen.setText(designation.getDiameterTen().toString());
@@ -206,7 +188,6 @@ public class FormedCalculateHeatingElementController {
         pipeThicknessFormedCalculateTen.setText(material.getPipeThickness().toString());
     }
 
-
     @FXML
     protected void onTransferData(InitialData initialData) {
         dateFormedCalculateTen.setText(String.valueOf(LocalDate.now()));
@@ -231,17 +212,88 @@ public class FormedCalculateHeatingElementController {
         transferInitialData = initialData;
     }
 
+    public List<String>  getListOfFormedCalculationForm() {
+        List<String> listOfInitialData = new ArrayList<String>();
+        listOfInitialData.add(lengthTenFormedCalculateTen.getText());
+        listOfInitialData.add(studLengthFormedCalculateTen.getText());
+        listOfInitialData.add(diameterTenFormedCalculateTen.getText());
+        listOfInitialData.add(powerTenFormedCalculateTen.getText());
+        listOfInitialData.add(workspaceFormedCalculateTen.getText());
+        listOfInitialData.add(voltageFormedCalculateTen.getText());
+        listOfInitialData.add(numberOrderFormedCalculateTen.getText());
+        listOfInitialData.add(customerFormedCalculateTen.getText());
+        listOfInitialData.add(pilotBatchFormedCalculateTen.getText());
+        listOfInitialData.add(numberOfProductsFormedCalculateTen.getText());
+        listOfInitialData.add(mandrelDiameterSpiralFormedCalculateTen.getText());
+        listOfInitialData.add(pipeElongationFactorFormedCalculateTen.getText());
+        listOfInitialData.add(spiralReductionFactorFormedCalculateTen.getText());
+        listOfInitialData.add(dateFormedCalculateTen.getText());
+        listOfInitialData.add(sandFormedCalculateTen.getText());
+        listOfInitialData.add(spiralMaterialFormedCalculateTen.getText());
+        listOfInitialData.add(mandrelDiameterContactFormedCalculateTen.getText());
+        listOfInitialData.add(specificLoadOnTheWireFormedCalculateTen.getText());
+        listOfInitialData.add(gostFormedCalculateTen.getText());
+        listOfInitialData.add(topStudContactTypeFormedCalculateTen.getText());
+        listOfInitialData.add(bottomStudContactTypeFormedCalculateTen.getText());
+        listOfInitialData.add(topStudProtrusionFormedCalculateTen.getText());
+        listOfInitialData.add(bottomStudProtrusionFormedCalculateTen.getText());
+        listOfInitialData.add(pipeBilletDiameterFormedCalculateTen.getText());
+        listOfInitialData.add(pipeThicknessFormedCalculateTen.getText());
+        listOfInitialData.add(lengthContanctFormedCalculateTen.getText());
+        listOfInitialData.add(heatingElementResistanceFormedCalculateTen.getText());
+        listOfInitialData.add(permissibleResistanceRangeForTheHeatingElementFormedCalculateTen.getText());
+        listOfInitialData.add(lengthOfTheCompressedSpiralFormedCalculateTen.getText());
+        listOfInitialData.add(totalWireLengthFormedCalculateTen.getText());
+        listOfInitialData.add(lengthOfTheActivePartFormedCalculateTen.getText());
+        listOfInitialData.add(pipeBlankLengthFormedCalculateTen.getText());
+        return listOfInitialData;
+    }
+
     @FXML
     private void onPrintFormedCalculationTen(ActionEvent event) throws IOException {
+        WordService.getWord(getListOfFormedCalculationForm());
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(new File("resource\\printCalculation.docx"));
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
         SaveTxtFileThread saveTxtFileThread =  new SaveTxtFileThread("Save Txt File ", transferInitialData);
         saveTxtFileThread.start();
         InitialDataServise.writeText(transferInitialData);
+
     }
 
     @FXML
     private void onSaveFormedCalculationTen(ActionEvent event) throws IOException {
         designationService.insertOne(transferInitialData.getDesignation());
+        customerService.insertOne(transferInitialData.getCustomer());
         Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("dataBaseDesignation.fxml"));
+        stage.setScene(new Scene(loader.load()));
+        stage.setTitle("Enter to data base ");
+        stage.initModality(WINDOW_MODAL);
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
+    @FXML
+    private void onCalculateHeatingElementControllerShow(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("calculateHeatingElement.fxml"));
+        stage.setScene(new Scene(loader.load()));
+        stage.setTitle("Enter to calculate heating element ");
+        stage.initModality(WINDOW_MODAL);
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
+    @FXML
+    private void onDataBaseControllerShow(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        SaveThread saveThread = new SaveThread("Save Thread", transferInitialData);
+        saveThread.start();
         FXMLLoader loader = new FXMLLoader(InPutProgramWindowApplication.class.getResource("dataBaseDesignation.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("Enter to data base ");

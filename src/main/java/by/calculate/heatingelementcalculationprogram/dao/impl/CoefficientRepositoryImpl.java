@@ -32,7 +32,7 @@ public class CoefficientRepositoryImpl implements CoefficientRepository {
     }
 
     @Override
-    public CoefficientDto getOneById(CoefficientDto coefficientDto) {
+    public CoefficientDto getOneById(Integer id) {
         return null;
     }
 

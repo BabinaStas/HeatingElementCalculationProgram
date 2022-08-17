@@ -102,4 +102,13 @@ public class Designation implements Serializable {
                 ",\nРабочая среда: " + workspaceTen +
                 ",\nНапряжение: " + voltageTen;
     }
+
+    public String toStringWord() {
+        return  "\nТЭН -  " + lengthTen +
+                " " + studLengthTen +
+                " " + diameterTen +
+                " / " + powerTen +
+                " " + workspaceTen +
+                " " + voltageTen;
+    }
 }
